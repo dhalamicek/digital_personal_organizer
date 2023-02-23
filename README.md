@@ -1,5 +1,6 @@
 **DIGITAL PERSONAL ORGANIZER**
-*Description:* a digital personal organizer to have pertinent information in one, centralized, secure, easy-to-maintain place that is backed up.
+
+***Description:*** a digital personal organizer to have pertinent information in one, centralized, secure, easy-to-maintain place that is backed up.
 
 ***Overview:*** The CDC reports that nearly 25% of US adults provided (uncompensated) care or assistance to a friend or family member who was aging or with disabilities based on a 2009 study with the number expected to increase as the population ages. Approximately 5.8 million Americans have Alzheimer’s or a form of dementia and that number is expected to rise to 14 million by 2060, according to the CDC. The US Census Bureau reports that 40.8 million US adults are living with a disability (noninstitutionalized.) According to the Kaiser Family Foundation, 3 million Americans receive services through states’ Home and Community Based Services Medicaid Waiver program (generally these are for those with the most severe disabilities.)
 
