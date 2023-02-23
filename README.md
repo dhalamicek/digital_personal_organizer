@@ -1,6 +1,6 @@
 **DIGITAL PERSONAL ORGANIZER**
 
-***Description:*** a digital personal organizer to have pertinent information in one, centralized, secure, easy-to-maintain place that is backed up.
+***Description:*** This application is a digital personal organizer to have pertinent information in one, centralized, secure, easy-to-maintain place that is backed up.
 
 ***Overview:*** The CDC reports that nearly 25% of US adults provided (uncompensated) care or assistance to a friend or family member who was aging or with disabilities based on a 2009 study with the number expected to increase as the population ages. Approximately 5.8 million Americans have Alzheimer’s or a form of dementia and that number is expected to rise to 14 million by 2060, according to the CDC. The US Census Bureau reports that 40.8 million US adults are living with a disability (noninstitutionalized.) According to the Kaiser Family Foundation, 3 million Americans receive services through states’ Home and Community Based Services Medicaid Waiver program (generally these are for those with the most severe disabilities.)
 
@@ -11,26 +11,26 @@ This project is to create a digital personal organizer, much like a filing cabin
 The goal is to eliminate the family fighting in the hospital when it comes to whether an elderly parent or adult with disabilities would want to be removed from life support; to smoothly allow the individual who is identified as the power of attorney for finances to have the documentation, account numbers, and passcodes in order to handle the financial affairs while a loved one is incapacitate; to respect the intents of the decedent having their most recent will available to the executor of the estate, and more. Friends and family members, along with the ill, disabled, and aging will have more time to make memories and enjoy last moments with less stress, less expense (no need for court and attorney fees to remedy), and while respecting the wishes of the individual.
 
 ***Features:***
--*File Repository/Digital Filing System or Binder*: Files of most types can be uploaded, replaced, deleted, and stored in folders organized by the owner/administrator. Documents such as last will and testament, power of attorney, advanced directive, HIPAA medical release, life insurance policies, health insurance cards, long term care policies, etc (If time, files will be organized in folders such as medical or legal, etc and will be “locked” so that only users with those permissions will be able to access that specific folder and/or document.)  
--*User login/logout and user roles*: This will ensure the protected and private information remains protected and private, with only those who should and need access having permission to access those specific pieces of information they should.  User roles: Admin - create, edit, delete, view all users, roles, files, and functions, and add new item/form and Viewer - view but not make changes to information or users (If time, another role: Editor- create, edit, delete, view information but not users.) If time, important Information will be organized into several broad sections such as financial, medical, personal identification, legal, misc. Within each section, account numbers, passcodes, providers and contact information (ie banking institution, mortgage lender, estate planning attorney, financial institution, retirement, annuity, bonds, and investment accounts, pensions, current medications and dosages, pharmacies, SSN, birth certificate, code to safe, where the key to the safety deposit box is, titles to real estate, etc) can be stored, again protected with individual users only having access to what they are uniquely permissioned to access. 
--*Contact List*: next of kin, close family members and trusted friends, providers, and professionals (doctors, pharmacies, attorneys, lawn care/home maintenance, financial advisors, designated POAs, executor of estate, etc.) and this list indicating a sub list of Emergency Contacts. 
--*Search functionality*
+- *File Repository/Digital Filing System or Binder*: Files of most types can be uploaded, replaced, deleted, and stored in folders organized by the owner/administrator. Documents such as last will and testament, power of attorney, advanced directive, HIPAA medical release, life insurance policies, health insurance cards, long term care policies, etc (If time, files will be organized in folders such as medical or legal, etc and will be “locked” so that only users with those permissions will be able to access that specific folder and/or document.)  
+- *User login/logout and user roles*: This will ensure the protected and private information remains protected and private, with only those who should and need access having permission to access those specific pieces of information they should.  User roles: Admin - create, edit, delete, view all users, roles, files, and functions, and add new item/form and Viewer - view but not make changes to information or users (If time, another role: Editor- create, edit, delete, view information but not users.) If time, important Information will be organized into several broad sections such as financial, medical, personal identification, legal, misc. Within each section, account numbers, passcodes, providers and contact information (ie banking institution, mortgage lender, estate planning attorney, financial institution, retirement, annuity, bonds, and investment accounts, pensions, current medications and dosages, pharmacies, SSN, birth certificate, code to safe, where the key to the safety deposit box is, titles to real estate, etc) can be stored, again protected with individual users only having access to what they are uniquely permissioned to access. 
+- *Contact List*: next of kin, close family members and trusted friends, providers, and professionals (doctors, pharmacies, attorneys, lawn care/home maintenance, financial advisors, designated POAs, executor of estate, etc.) and this list indicating a sub list of Emergency Contacts. 
+- *Search functionality*
 
 ***Technologies:***
--Java
--MySQL
--Hibernate
--Spring Boot
--Thymeleaf
--Git Hub
--Bootstrap
+- Java
+- MySQL
+- Hibernate
+- Spring Boot
+- Thymeleaf
+- Git Hub
+- Bootstrap
 
 ***What I'll Have to Learn:***
--Creating user roles
--Creating a database with multiple types of information (ie documents vs user input)
--Creating a nice-looking form, determining feature types (drop down menu, check box, free text, etc)
--How to create a template that admin can edit • How to upload png, jpg, pdf, & doc
--How to use Bootstrap
+- Creating user roles
+- Creating a database with multiple types of information (ie documents vs user input)
+- Creating a nice-looking form, determining feature types (drop down menu, check box, free text, etc)
+- How to create a template that admin can edit • How to upload png, jpg, pdf, & doc
+- How to use Bootstrap
 
 [Digital Personal Organizer Project Wireframe.pptx](https://github.com/dhalamicek/digital_personal_organizer/files/10810195/Digital.Personal.Organizer.Project.Wireframe.pptx)
 
