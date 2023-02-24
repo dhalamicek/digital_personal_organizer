@@ -5,6 +5,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
+//how to make medicationPrescriber pull names from provider
 @Entity
 public class Medication extends AbstractEntity {
 
