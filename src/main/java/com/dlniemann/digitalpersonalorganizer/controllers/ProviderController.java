@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 
+
+//does add/edit/delete go in this controller or the admincontroller?
 @Controller
 @RequestMapping("medical/providers")
 public class ProviderController {

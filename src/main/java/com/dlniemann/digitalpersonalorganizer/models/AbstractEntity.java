@@ -1,7 +1,8 @@
 package com.dlniemann.digitalpersonalorganizer.models;
 
-
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.util.Objects;
 
 @MappedSuperclass
