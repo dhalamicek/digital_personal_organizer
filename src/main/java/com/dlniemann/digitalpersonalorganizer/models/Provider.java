@@ -30,7 +30,7 @@ public class Provider extends AbstractEntity{
     private Integer providerPhoneNumber;
 
     public Provider(String providerRole, String providerName, Integer providerPhoneNumber) {
-
+        super();
         this.providerRole = providerRole;
         this.providerName = providerName;
         this.providerPhoneNumber = providerPhoneNumber;

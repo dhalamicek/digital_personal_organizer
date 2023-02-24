@@ -33,6 +33,7 @@ public class Contact extends AbstractEntity {
     private String emergencyContact;
 
     public Contact (String firstName, String lastName, String relationship, Integer phoneNumber, String email, String emergencyContact){
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.relationship = relationship;

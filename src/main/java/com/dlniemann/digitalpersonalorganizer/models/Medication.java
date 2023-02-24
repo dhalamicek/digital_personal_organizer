@@ -31,6 +31,7 @@ public class Medication extends AbstractEntity {
     private String pharmacyWhereMedicationFilled;
 
     public Medication(String medicationName, String medicationStrengthConcentration, String medicationDose, String medicationFrequency, String medicationPrescriber, String pharmacyWhereMedicationFilled) {
+        super();
         this.medicationName = medicationName;
         this.medicationStrengthConcentration = medicationStrengthConcentration;
         this.medicationDose = medicationDose;
