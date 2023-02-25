@@ -10,11 +10,10 @@ import javax.validation.constraints.Size;
 @Entity
 public class Medication extends AbstractEntity {
 
-    @ManyToOne
-    private Provider provider;
 
-    @NotBlank
-    @Size(min = 3, message = "Medication name must have at least three characters")
+
+    @NotBlank(message = "Medication name is required")
+    @Size(min = 3, max = 50, message = "Medication name must be between 3 and 50 characters")
     private String medicationName;
 
 
@@ -22,21 +21,22 @@ public class Medication extends AbstractEntity {
 
     private String medicationDose;
 
-    @NotBlank
+    @NotBlank(message = "Frequency is required")
     @Size(min = 3, message = "Medication frequency must have at least three characters")
     private String medicationFrequency;
 
-    private String medicationPrescriber;
+    @ManyToOne
+    private Provider provider;
 
     private String pharmacyWhereMedicationFilled;
 
-    public Medication(String medicationName, String medicationStrengthConcentration, String medicationDose, String medicationFrequency, String medicationPrescriber, String pharmacyWhereMedicationFilled) {
+    public Medication(String medicationName, String medicationStrengthConcentration, String medicationDose, String medicationFrequency, Provider provider, String pharmacyWhereMedicationFilled) {
         super();
         this.medicationName = medicationName;
         this.medicationStrengthConcentration = medicationStrengthConcentration;
         this.medicationDose = medicationDose;
         this.medicationFrequency = medicationFrequency;
-        this.medicationPrescriber = medicationPrescriber;
+        this.provider = provider;
         this.pharmacyWhereMedicationFilled = pharmacyWhereMedicationFilled;
     }
 
@@ -82,13 +82,7 @@ public class Medication extends AbstractEntity {
         this.medicationFrequency = medicationFrequency;
     }
 
-    public String getMedicationPrescriber() {
-        return medicationPrescriber;
-    }
 
-    public void setMedicationPrescriber(String medicationPrescriber) {
-        this.medicationPrescriber = medicationPrescriber;
-    }
 
     public String getPharmacyWhereMedicationFilled() {
         return pharmacyWhereMedicationFilled;

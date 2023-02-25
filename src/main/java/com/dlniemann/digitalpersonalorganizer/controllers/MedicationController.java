@@ -26,7 +26,8 @@ public class MedicationController {
     private ProvidersRepository providersRepository;
 
     @GetMapping("")
-    public String index(Model model) {
+    public String displayAllMedications(Model model) {
+        model.addAttribute("title", "All Medications");
         model.addAttribute("medications", medicationsRepository.findAll());
         return "medical/medications/index";
     }
