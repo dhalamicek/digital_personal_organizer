@@ -3,16 +3,18 @@ package com.dlniemann.digitalpersonalorganizer.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
 
+    @NotNull
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

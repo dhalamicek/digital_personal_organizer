@@ -1,72 +1,56 @@
 package com.dlniemann.digitalpersonalorganizer.controllers;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import com.dlniemann.digitalpersonalorganizer.models.DBFile;
+import com.dlniemann.digitalpersonalorganizer.service.DBFileService;
+import com.dlniemann.digitalpersonalorganizer.payload.UploadFileResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
-
-@Controller
-@RequestMapping("/file")
+@RestController
 public class FileController {
-    private final FileService service;
 
-    public FileController(FileService service) {
-        this.service = service;
+    private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+
+    @Autowired
+    private DBFileService dbFileService;
+
+    @PostMapping("/uploadFile")
+    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+        DBFile dbFile = dbFileService.storeFile(file);
+
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile").path(dbFile.getId()).toUriString();
+
+        return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri, file.getContentType(), file.getSize());
     }
 
-    @GetMapping("/{fileId}")
-    public void download(@PathVariable("fileId") Integer fileId, HttpServletResponse response) throws IOException  {
-        var record = service.findById(fileId)
-                .orElseThrow(() -> new FileNotFoundException("File with '" + fileId + "' not found"));
-
-        response.setContentType(record.contentType().toString());
-        response.setHeader("Content-Length", Long.toString(record.size()));
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + record.name() +"\"");
-
-        var ins = new FileInputStream(record.path());
-
-        IOUtils.copy(ins, response.getOutputStream());
-        IOUtils.closeQuietly(ins);
-        IOUtils.closeQuietly(response.getOutputStream());
+    @PostMapping("/uploadMultipleFiles")
+    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+        return Arrays.asList(files).stream().map(file -> uploadFile(file)).collect(Collectors.toList());
     }
 
-    @PostMapping("/upload")
-    public ResponseEntity<Void> upload(HttpServletRequest request) throws Exception {
-        if(!ServletFileUpload.isMultipartContent(request)) {
-            throw new BadRequestException("Multipart request expected");
-        }
+    @GetMapping("/downloadFile/{fileId}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) {
+        DBFile dbFile = dbFileService.getFile(fileId);
 
-        service.upload(new ServletFileUpload().getItemIterator(request));
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/");
-
-        return ResponseEntity.status(HttpStatus.FOUND).headers(headers).build();
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(dbFile.getFileType())).header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"").body(new ByteArrayResource(dbFile.getData()));
     }
 
-    public static class FileNotFoundException extends RuntimeException {
-        public FileNotFoundException(String detail) {
-            super(detail);
-        }
-    }
 
-    public static class BadRequestException extends RuntimeException {
-        public BadRequestException(String detail) {
-            super(detail);
-        }
-    }
+
 }
 
