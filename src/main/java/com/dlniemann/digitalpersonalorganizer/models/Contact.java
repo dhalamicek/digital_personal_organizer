@@ -1,12 +1,16 @@
 package com.dlniemann.digitalpersonalorganizer.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Contact extends AbstractEntity {
+
+    @ManyToOne
+    private Patient patient;
 
     @NotBlank
     @Size(min = 2, message = "First Name must be at least two characters")
@@ -29,17 +33,17 @@ public class Contact extends AbstractEntity {
     private String email;
 
    //need to figure out how to make Emergency Contact limited to only yes or no
-   @Size(min = 2, max = 3, message = "Emergency Contact must be either yes or no")
-    private String emergencyContact;
+   //@NotBlank
+    //private Boolean emergencyContact;
 
-    public Contact (String firstName, String lastName, String relationship, Integer phoneNumber, String email, String emergencyContact){
+    public Contact (String firstName, String lastName, String relationship, Integer phoneNumber, String email){
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.relationship = relationship;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.emergencyContact = emergencyContact;
+        //this.emergencyContact = emergencyContact;
     }
     public Contact (){}
 
@@ -83,11 +87,11 @@ public class Contact extends AbstractEntity {
         this.email = email;
     }
 
-    public String getEmergencyContact() {
-        return emergencyContact;
-    }
+    //public String getEmergencyContact() {
+        //return emergencyContact;
+    //}
 
-    public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
-    }
+    //public void setEmergencyContact(String emergencyContact) {
+        //this.emergencyContact = emergencyContact;
+    //}
 }

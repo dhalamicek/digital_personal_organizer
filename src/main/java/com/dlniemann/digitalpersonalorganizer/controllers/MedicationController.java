@@ -3,20 +3,20 @@ package com.dlniemann.digitalpersonalorganizer.controllers;
 
 import com.dlniemann.digitalpersonalorganizer.models.Medication;
 import com.dlniemann.digitalpersonalorganizer.models.data.MedicationsRepository;
+import com.dlniemann.digitalpersonalorganizer.models.data.PatientRepository;
 import com.dlniemann.digitalpersonalorganizer.models.data.ProvidersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
-//does add/edit/delete go in this controller or the admincontroller?
-//how to pull in provider name from providers for prescriber
+
 @Controller
-@RequestMapping("medical/medications")
+@RequestMapping("medications")
 public class MedicationController {
 
     @Autowired
@@ -25,11 +25,38 @@ public class MedicationController {
     @Autowired
     private ProvidersRepository providersRepository;
 
+    @Autowired
+    private PatientRepository patientRepository;
+
     @GetMapping("")
-    public String displayAllMedications(Model model) {
+    public String index(Model model) {
         model.addAttribute("title", "All Medications");
         model.addAttribute("medications", medicationsRepository.findAll());
-        return "medical/medications/index";
+        return "medications/index";
+    }
+
+    @GetMapping("add")
+    public String displayAddMedicationForm(Model model) {
+        model.addAttribute("title", "Add Medication");
+        model.addAttribute("medication", new Medication());
+        model.addAttribute("medicationName", medicationsRepository.findAll());
+        model.addAttribute("medicationStrengthConcentration", medicationsRepository.findAll());
+        model.addAttribute("medicationDose", medicationsRepository.findAll());
+        model.addAttribute("medicationFrequency", medicationsRepository.findAll());
+        model.addAttribute("provider", providersRepository.findAll());
+        model.addAttribute("pharmacyWhereMedicationFilled", medicationsRepository.findAll());
+        return "medications/add";
+    }
+
+    @PostMapping("add")
+    public String processAddMedicationForm(@ModelAttribute @Valid Medication newMedication, Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Medication");
+            return "medications/add";
+        }
+        medicationsRepository.save(newMedication);
+        return "redirect:";
     }
 
     @GetMapping("view/{medicationId}")
@@ -39,7 +66,7 @@ public class MedicationController {
         if (optMedication.isPresent()) {
             Medication medication = (Medication) optMedication.get();
             model.addAttribute("medication", medication);
-            return "medical/medications/view";
+            return "medications/view";
         } else {
             return "redirect:../";
 

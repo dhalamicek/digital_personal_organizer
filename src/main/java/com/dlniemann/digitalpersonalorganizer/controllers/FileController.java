@@ -1,8 +1,9 @@
 package com.dlniemann.digitalpersonalorganizer.controllers;
 
 import com.dlniemann.digitalpersonalorganizer.models.DBFile;
-import com.dlniemann.digitalpersonalorganizer.service.DBFileService;
+import com.dlniemann.digitalpersonalorganizer.models.data.PatientRepository;
 import com.dlniemann.digitalpersonalorganizer.payload.UploadFileResponse;
+import com.dlniemann.digitalpersonalorganizer.service.DBFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @RestController
+@RequestMapping("files")
 public class FileController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
     private DBFileService dbFileService;
+
+    @Autowired
+    private PatientRepository patientRepository;
+
+
+
+    //how to have an index of file names with links to the document download ?
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {

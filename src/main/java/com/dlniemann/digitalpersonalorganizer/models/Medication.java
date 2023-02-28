@@ -25,10 +25,14 @@ public class Medication extends AbstractEntity {
     @Size(min = 3, message = "Medication frequency must have at least three characters")
     private String medicationFrequency;
 
+     @ManyToOne
+     private Patient patient;
+
     @ManyToOne
     private Provider provider;
-
     private String pharmacyWhereMedicationFilled;
+
+
 
     public Medication(String medicationName, String medicationStrengthConcentration, String medicationDose, String medicationFrequency, Provider provider, String pharmacyWhereMedicationFilled) {
         super();
@@ -38,17 +42,10 @@ public class Medication extends AbstractEntity {
         this.medicationFrequency = medicationFrequency;
         this.provider = provider;
         this.pharmacyWhereMedicationFilled = pharmacyWhereMedicationFilled;
+
     }
 
     public Medication(){}
-
-    public Provider getProvider() {
-        return provider;
-    }
-
-    public void setProvider(Provider provider) {
-        this.provider = provider;
-    }
 
     public String getMedicationName() {
         return medicationName;
@@ -91,4 +88,6 @@ public class Medication extends AbstractEntity {
     public void setPharmacyWhereMedicationFilled(String pharmacyWhereMedicationFilled) {
         this.pharmacyWhereMedicationFilled = pharmacyWhereMedicationFilled;
     }
+
+
 }

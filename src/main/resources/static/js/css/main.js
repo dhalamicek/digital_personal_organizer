@@ -82,3 +82,11 @@ multipleUploadForm.addEventListener('submit', function(event){
     uploadMultipleFiles(files);
     event.preventDefault();
 }, true);
+
+let menuicn = document.querySelector(".menuicn");
+  let nav = document.querySelector(".navcontainer");
+
+  menuicn.addEventListener("click",()=>
+  {
+      nav.classList.toggle("navclose");
+  })
