@@ -37,11 +37,11 @@ public class Patient extends AbstractEntity {
 
     @NotBlank
     @Size(min = 8, message = "Date of Birth must contain at least 8 numbers in MMDDYYYY format")
-    private Integer dOB;
+    private String dOB;
 
     public Patient(){};
 
-    public Patient (String firstName, String lastName, Integer dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<DBFile> files) {
+    public Patient (String firstName, String lastName, String dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<DBFile> files) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -101,11 +101,11 @@ public class Patient extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public Integer getDOB() {
+    public String getDOB() {
         return dOB;
     }
 
-    public void setDOB(Integer dOB) {
+    public void setDOB(String dOB) {
         this.dOB = dOB;
     }
 }
