@@ -2,8 +2,11 @@ package com.dlniemann.digitalpersonalorganizer.controllers;
 
 import com.dlniemann.digitalpersonalorganizer.models.User;
 import com.dlniemann.digitalpersonalorganizer.models.data.UserRepository;
+import com.dlniemann.digitalpersonalorganizer.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
@@ -22,7 +25,8 @@ public class AuthenticationController {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(userId);
+        Optional<User> user = userRepository.findById(userId
+        );
 
         if (user.isEmpty()) {
             return null;
@@ -33,5 +37,12 @@ public class AuthenticationController {
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
+    }
+
+    @GetMapping("/register")
+    public String displayRegistrationForm(Model model) {
+        model.addAttribute(new RegisterFormDTO());
+        model.addAttribute("title", "Register");
+        return "register";
     }
 }
