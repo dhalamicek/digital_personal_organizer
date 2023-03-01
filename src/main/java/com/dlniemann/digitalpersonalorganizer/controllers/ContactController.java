@@ -3,6 +3,7 @@ package com.dlniemann.digitalpersonalorganizer.controllers;
 import com.dlniemann.digitalpersonalorganizer.models.Contact;
 import com.dlniemann.digitalpersonalorganizer.models.data.ContactRepository;
 import com.dlniemann.digitalpersonalorganizer.models.data.PatientRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

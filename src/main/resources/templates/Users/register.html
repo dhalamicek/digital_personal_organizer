@@ -11,18 +11,31 @@
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
-
+  </div>
+  <div class="form=-group">
     <label for="username">
       <b>Username</b>
-    </label>
+
     <input class="form-control" th:field="${registerFormDTO.username}"/>
            <input type="text" placeholder="Enter Username" name="username" id="username" required>
-
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" id="password" required>
-
-    <button type="submit" class="registerbtn">Register</button>
+    </label>
+    <p class="error" th:errors="${registerFormDTO.username}"></p>
   </div>
+
+  <div class="form-group">
+    <label for="password">
+      <b>Password</b>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+    </label>
+    <p class="error" th:errors="${registerFormDTO.password}"></p>
+  </div>
+  <div class="form-group">
+    <label> Verify Password
+      <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
+    </label>
+  </div>
+    <input type="submit" class="btn btn-primary" value="Register"/>
+
 
 </form>
 </body>
