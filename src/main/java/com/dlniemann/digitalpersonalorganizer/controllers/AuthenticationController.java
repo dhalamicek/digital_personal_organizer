@@ -2,6 +2,7 @@ package com.dlniemann.digitalpersonalorganizer.controllers;
 
 import com.dlniemann.digitalpersonalorganizer.models.User;
 import com.dlniemann.digitalpersonalorganizer.models.data.UserRepository;
+import com.dlniemann.digitalpersonalorganizer.models.dto.LoginFormDTO;
 import com.dlniemann.digitalpersonalorganizer.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,5 +84,16 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
+    }
+    @GetMapping("/login")
+    public String displayLoginForm(Model model) {
+        model.addAttribute(new LoginFormDTO());
+        model.addAttribute("title", "Log In");
+        return "login";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/login";
     }
 }

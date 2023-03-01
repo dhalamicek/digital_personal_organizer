@@ -2,26 +2,58 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container  body-content">
-<h1>Add Skill</h1>
+
 
 <nav th:replace="fragments :: page-header"></nav>
-
+<div class="container body-content">
+    <h1>Add Contact</h1>
+    <ul>
+        <li th:each="contact : ${contacts}">
+            <a th:href="@{'/contacts/view/' + ${contact.id}}" th:text="${contact.name}"></a>
+        </li>
+    </ul>
+</div>
 <form method="post" style="max-width:600px;">
     <div class="form-group">
-        <label th:for="name">Contacts</label>
-        <input class="form-control" th:field="${contact.name}" />
-        <span th:errors="${skill.name}" class="error"></span>
+        <label th:for="firstName">Contact First Name</label>
+        <input class="form-control" th:field="${contact.firstName}" />
+        <span th:errors="${contact.firstName}" class="error"></span>
     </div>
-
     <div class="form-group">
-        <label th:for="description">Skill Description</label>
-        <input class="form-control" th:field="${skill.description}" />
-        <span th:errors="${skill.description}" class="error"></span>
-        <a th:href="@{'/skills/add'}">Add Skills</a>
+        <label th:for="lastName">Contact Last Name</label>
+        <input class="form-control" th:field="${contact.lastName}" />
+        <span th:errors="${contact.lastName}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="relationship">Contact Relationship to Patient</label>
+        <input class="form-control" th:field="${contact.relationship}" />
+        <span th:errors="${contact.relationship}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="phoneNumber">Contact Phone Number</label>
+        <input class="form-control" th:field="${contact.phoneNumber}" />
+        <span th:errors="${contact.phoneNumber}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="email">Contact Email</label>
+        <input class="form-control" th:field="${contact.email}" />
+        <span th:errors="${contact.email}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="emergency">Emergency Contact</label>
+        <input class="form-control" th:field="${contact.emergency}" />
+            <input type="radio" id="yes" name="emergency_contact" value="YES">
+            <label for="yes">YES</label><br>
+            <label th:text="${contact.emergency}"></label>
+            <input type="radio" id="no" name="emergency_contact" value="NO">
+            <label for="no">NO</label><br>
+            <label th:text="${contact.emergency}"></label>
+
+        </th:block>
+        <a th:href="@{'/contacts/add'}">Add Contact</a>
     </div>
 
-    <input type="submit" value="Add Skill" />
+    <input type="submit" value="Add Contact" />
 </form>
 
 </body>
-</html>
