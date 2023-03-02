@@ -45,51 +45,59 @@
 
                 <!--                        username field-->
                 <div class="row mb-3">
-                    <label for="inputUserName" class="col-sm-2 col-form-label">User Name</label>
+                    <label for="userName" class="col-sm-2 col-form-label">User Name</label>
                     <div class="col-sm-10">
-                        <input class="form-control" placeholder="Username" id="inputUserName" th:field="${user.username}" />
-                        <span th:errors="${user.username}" class="error"></span>
+                        <input class="form-control" placeholder="Enter username" id="userName" required th:field="${registerFormDTO.username}" />
+                        <span th:errors="${registerFormDTO.username}" class="error"></span>
                     </div>
                 </div>
 
                 <!--                        password field-->
                 <div class="row mb-3">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input class="form-control" placeholder="Password" id="inputPassword" th:field="${user.password}" />
+                        <input class="form-control" placeholder="Enter password" id="password" required th:field="${registerFormDTO.password}" />
                         <span th:errors="${user.password}" class="error"></span>
                     </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label"> Verify Password</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
+
+                    </div>
+                </div>
                 </div>
 
                 <!--                        first name field-->
-                <div class="row mb-3">
-                    <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" placeholder="First Name" id="inputFirstName" th:field="${user.firstName}" />
-                        <span th:errors="${user.firstName}" class="error"></span>
-                    </div>
-                </div>
 
-                <!--                        last name field-->
-                <div class="row mb-3">
-                    <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" placeholder="Last Name" id="inputLastName" th:field="${user.lastName}" />
-                        <span th:errors="${user.lastName}" class="error"></span>
+                <!--     <div class="row mb-3">
+                        <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="First Name" id="inputFirstName" th:field="${user.firstName}" />
+                            <span th:errors="${user.firstName}" class="error"></span>
+                        </div>
                     </div>
-                </div>
+    />
+                    <!--                        last name field-->/>
+                <!--  <div class="row mb-3">
+                     <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
+                     <div class="col-sm-10">
+                         <input class="form-control" placeholder="Last Name" id="inputLastName" th:field="${user.lastName}" />
+                         <span th:errors="${user.lastName}" class="error"></span>
+                     </div>
+                 </div>
 
-                <!--                        email field-->
-                <div class="row mb-3">
-                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" placeholder="Email" id="inputEmail" th:field="${user.email}" />
-                        <span th:errors="${user.email}" class="error"></span>
-                    </div>
-                </div>
-
-                <!--                        phone field-->
-                <div class="row mb-3">
+                 <!--                        email field-->/>
+                <!--   <div class="row mb-3">
+                       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                       <div class="col-sm-10">
+                           <input class="form-control" placeholder="Email" id="inputEmail" th:field="${user.email}" />
+                           <span th:errors="${user.email}" class="error"></span>
+                       </div>
+                   </div>
+   />
+                   <!--                        phone field-->/>
+                <!--<div class="row mb-3">
                     <label for="inputPhoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
                         <input class="form-control" placeholder="Phone Number" id="inputPhoneNumber" th:field="${user.phoneNumber}" />
@@ -97,65 +105,65 @@
                     </div>
                 </div>
 
-                <!--                        relationship field-->
-                <fieldset class="row mb-3">
-                    <label th:for="role">Relationship</label>
+                <!--                        relationship field-->/>
+                <!-- <fieldset class="row mb-3">
+                     <label th:for="role">Relationship</label>
 
-                   <!--                         legend class="col-form-label col-sm-2 pt-0">Relationships</legend>-->
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="relatioship1" id="relatioship1" value="family" checked>
-                        <label class="form-check-label" for="family">
-                            Family
-                        </label><br>
-                        <input class="form-check-input" type="checkbox" name="relatioship2" id="relatioship2" value="friend" checked>
-                        <label class="form-check-label" for="friend">
-                            Friend
-                        </label><br>
-                        <input class="form-check-input" type="checkbox" name="relatioship3" id="relatioship3" value="medicalProvider" checked>
-                        <label class="form-check-label" for="medicalProvider">
-                            Medical Provider
-                        </label><br>
-                        <input class="form-check-input" type="checkbox" name="relatioship4" id="relatioship4" value="legalProfessional" checked>
-                        <label class="form-check-label" for="legalProfessional">
-                            Legal Professional
-                        </label><br>
-                        <input class="form-check-input" type="checkbox" name="relatioship5" id="relatioship5" value="financialProfessional" checked>
-                        <label class="form-check-label" for="financialProfessional">
-                            Financial Professional
-                        </label><br></div>
-                </div>
+                    <!--                         legend class="col-form-label col-sm-2 pt-0">Relationships</legend>-->/>
+                <!--  <div class="col-sm-10">
+                      <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="relationship1" id="relationship1" value="family" checked>
+                      <label class="form-check-label" for="family">
+                          Family
+                      </label><br>
+                      <input class="form-check-input" type="checkbox" name="relationship2" id="relationship2" value="friend" checked>
+                      <label class="form-check-label" for="friend">
+                          Friend
+                      </label><br>
+                      <input class="form-check-input" type="checkbox" name="relationship3" id="relationship3" value="medicalProvider" checked>
+                      <label class="form-check-label" for="medicalProvider">
+                          Medical Provider
+                      </label><br>
+                      <input class="form-check-input" type="checkbox" name="relationship4" id="relationship4" value="legalProfessional" checked>
+                      <label class="form-check-label" for="legalProfessional">
+                          Legal Professional
+                      </label><br>
+                      <input class="form-check-input" type="checkbox" name="relationship5" id="relationship5" value="financialProfessional" checked>
+                      <label class="form-check-label" for="financialProfessional">
+                          Financial Professional
+                      </label><br></div>
+              </div>
+              </fieldset>
+/>
+                                      permissions-->
+                <!-- <fieldset class="row mb-3">
+                     <label th:for="role">Role</label>
+                                                <legend class="col-form-label col-sm-2 pt-0">Permission Levels</legend>-->/>
+                <!--<div class="col-sm-10">
+                   <div class="form-check">
+                       <input class="form-check-input" type="radio" name="gridRadios" id="admin" value="admin" checked>
+                       <label class="form-check-label" for="admin">
+                           Admin
+                       </label>
+                   </div>
+                   <div class="form-check">
+                       <input class="form-check-input" type="radio" name="gridRadios" id="editor" value="editor">
+                       <label class="form-check-label" for="Editor">
+                           Editor
+                       </label>
+                   </div>
+                   <div class="form-check">
+                       <input class="form-check-input" type="radio" name="gridRadios" id="viewer" value="viewer">
+                       <label class="form-check-label" for="viewer">
+                           Viewer
+                       </label>
+                   </div>
+               </div>
+/>
+                                          <a th:href="@{'/role/add'}">Add Role</a>-->
                 </fieldset>
 
-                <!--                        permissions-->
-                <fieldset class="row mb-3">
-                    <label th:for="role">Role</label>
-                    <!--                            <legend class="col-form-label col-sm-2 pt-0">Permission Levels</legend>-->
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="admin" value="admin" checked>
-                            <label class="form-check-label" for="admin">
-                                Admin
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="editor" value="editor">
-                            <label class="form-check-label" for="Editor">
-                                Editor
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="viewer" value="viewer">
-                            <label class="form-check-label" for="viewer">
-                                Viewer
-                            </label>
-                        </div>
-                    </div>
-
-                    <!--                            <a th:href="@{'/role/add'}">Add Role</a>-->
-                </fieldset>
-
-                <a th:href="@{'/role/add'}"><button type="submit" class="btn btn-primary">Create User</button></a>
+                <a th:href="@{'/user/add'}"><button type="submit" class="btn btn-primary">Create User</button></a>
 
             </form>
 

@@ -31,8 +31,7 @@ public class AuthenticationController {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(userId
-        );
+        Optional<User> user = userRepository.findById(userId);
 
         if (user.isEmpty()) {
             return null;
@@ -47,16 +46,16 @@ public class AuthenticationController {
 
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
-                model.addAttribute("title", "Register");
         model.addAttribute(new RegisterFormDTO());
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("title", "Register");
+        //model.addAttribute("users", userRepository.findAll());
         return "register";
     }
 
+
+
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
-                                          Errors errors, HttpServletRequest request,
-                                          Model model) {
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Register");
@@ -90,6 +89,37 @@ public class AuthenticationController {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
+                                   Errors errors, HttpServletRequest request,
+                                   Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Log In");
+            return "login";
+        }
+
+        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+
+        if (theUser == null) {
+            errors.rejectValue("username", "user.invalid", "The given username does not exist");
+            model.addAttribute("title", "Log In");
+            return "login";
+        }
+
+        String password = loginFormDTO.getPassword();
+
+        if (!theUser.isMatchingPassword(password)) {
+            errors.rejectValue("password", "password.invalid", "Invalid password");
+            model.addAttribute("title", "Log In");
+            return "login";
+        }
+
+        setUserInSession(request.getSession(), theUser);
+
+        return "redirect:";
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
