@@ -1,9 +1,10 @@
 package com.dlniemann.digitalpersonalorganizer.models;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 //how to make medicationPrescriber pull names from provider
@@ -25,23 +26,23 @@ public class Medication extends AbstractEntity {
     @Size(min = 3, message = "Medication frequency must have at least three characters")
     private String medicationFrequency;
 
-     @ManyToOne
-     private Patient patient;
+     @ManyToMany
+     private List<Patient> patients;
 
-    @ManyToOne
-    private Provider provider;
-    private String pharmacyWhereMedicationFilled;
-
+    @ManyToMany
+    private List<Provider> providers;
 
 
-    public Medication(String medicationName, String medicationStrengthConcentration, String medicationDose, String medicationFrequency, Provider provider, String pharmacyWhereMedicationFilled) {
+
+
+    public Medication(String medicationName, String medicationStrengthConcentration, String medicationDose, String medicationFrequency, List<Provider> providers) {
         super();
         this.medicationName = medicationName;
         this.medicationStrengthConcentration = medicationStrengthConcentration;
         this.medicationDose = medicationDose;
         this.medicationFrequency = medicationFrequency;
-        this.provider = provider;
-        this.pharmacyWhereMedicationFilled = pharmacyWhereMedicationFilled;
+        this.providers = providers;
+
 
     }
 
@@ -79,15 +80,14 @@ public class Medication extends AbstractEntity {
         this.medicationFrequency = medicationFrequency;
     }
 
+    public List<Provider> getProviders(){return this.providers;}
 
-
-    public String getPharmacyWhereMedicationFilled() {
-        return pharmacyWhereMedicationFilled;
+    public void setProviders(List<Provider> providers) {
+        this.providers = providers;
     }
+    public List<Patient> getPatients(){return this.patients;}
 
-    public void setPharmacyWhereMedicationFilled(String pharmacyWhereMedicationFilled) {
-        this.pharmacyWhereMedicationFilled = pharmacyWhereMedicationFilled;
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
     }
-
-
 }

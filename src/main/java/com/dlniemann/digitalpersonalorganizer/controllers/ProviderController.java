@@ -7,10 +7,10 @@ import com.dlniemann.digitalpersonalorganizer.models.data.ProvidersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 import java.util.Optional;
 
 
@@ -36,28 +36,7 @@ public class ProviderController {
         return "providers/index";
     }
 
-    @GetMapping("add")
-    public String displayAddProviderForm(Model model) {
-        model.addAttribute("title", "Add Provider");
-        model.addAttribute("provider", new Provider());
-        model.addAttribute("providerRole", providersRepository.findAll());
-        model.addAttribute("providerName", providersRepository.findAll());
-        model.addAttribute("providerName", providersRepository.findAll());
-        model.addAttribute("providerPhoneNumber", providersRepository.findAll());
 
-        return "providers/add";
-    }
-
-    @PostMapping("add")
-    public String processAddProviderForm(@ModelAttribute @Valid Provider newProvider, Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Provider");
-            return "providers/add";
-        }
-        providersRepository.save(newProvider);
-        return "redirect:";
-    }
 
     @GetMapping("view/{providerId}")
     public String displayViewProvider(Model model, @PathVariable int providerId) {

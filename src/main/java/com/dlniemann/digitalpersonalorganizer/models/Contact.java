@@ -1,16 +1,18 @@
 package com.dlniemann.digitalpersonalorganizer.models;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Contact extends AbstractEntity {
 
-    @ManyToOne
-    private Patient patient;
+    @ManyToMany(mappedBy = "contacts")
+    private List<Patient> patients = new ArrayList<>();
 
     @NotBlank
     @Size(min = 2, message = "First Name must be at least two characters")
@@ -85,6 +87,10 @@ public class Contact extends AbstractEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Patient> getPatients(){
+        return patients;
     }
 
     //public String getEmergencyContact() {

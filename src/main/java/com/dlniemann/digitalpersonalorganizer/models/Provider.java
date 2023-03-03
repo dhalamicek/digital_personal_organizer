@@ -3,7 +3,6 @@ package com.dlniemann.digitalpersonalorganizer.models;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -12,8 +11,8 @@ import java.util.List;
 @Entity
 public class Provider extends AbstractEntity{
 
-    @ManyToOne
-    private Patient patient;
+    @ManyToMany
+    private List<Patient> patients;
 
     @ManyToMany
     private List<Medication> medications;
@@ -31,12 +30,11 @@ public class Provider extends AbstractEntity{
     private Integer providerPhoneNumber;
 
     public Provider() {}
-    public Provider(String providerRole, String providerName, Integer providerPhoneNumber, Patient patient, List<Medication> medications) {
+    public Provider(String providerRole, String providerName, Integer providerPhoneNumber, List<Medication> medications) {
         super();
         this.providerRole = providerRole;
         this.providerName = providerName;
         this.providerPhoneNumber = providerPhoneNumber;
-        this.patient = patient;
         this.medications = medications;
     }
 
@@ -74,12 +72,10 @@ public class Provider extends AbstractEntity{
         this.medications = medications;
     }
 
-    public Patient getPatient() {
-        return this.patient;
-    }
+    public List<Patient> getPatients(){return this.patients;}
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
     }
 
 

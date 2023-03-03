@@ -2,21 +2,20 @@ package com.dlniemann.digitalpersonalorganizer.controllers;
 
 import com.dlniemann.digitalpersonalorganizer.models.*;
 import com.dlniemann.digitalpersonalorganizer.models.data.*;
-import com.dlniemann.digitalpersonalorganizer.payload.UploadFileResponse;
-import com.dlniemann.digitalpersonalorganizer.service.DBFileService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class AdministrationController {
 
     @Autowired
@@ -24,9 +23,6 @@ public class AdministrationController {
 
     @Autowired
     private FileRepository fileRepository;
-
-    @Autowired
-    private DBFileService dbFileService;
 
     @Autowired
     private MedicationsRepository medicationsRepository;
@@ -40,14 +36,19 @@ public class AdministrationController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping("/admin/contacts")
-    public String contactsIndex (Model model) {
-            model.addAttribute("title", "All Contacts");
-        model.addAttribute("contacts", contactRepository.findAll());
-        return "admin/contacts/index";
-}
+    //how to get this to link to their respective pages?
+    @GetMapping("")
+    public String index(Model model) {
+        model.addAttribute("title", "Contacts");
+        model.addAttribute("title", "Files");
+        model.addAttribute("title", "Medications");
+        model.addAttribute("title", "Patients");
+        model.addAttribute("title", "Providers");
+        model.addAttribute("title", "Users");
+        return "index";
+    }
 
-    @GetMapping("/admin/contacts/add")
+    @GetMapping("contacts/add")
     public String displayAddContactForm(Model model) {
         model.addAttribute("title", "Add Contact");
         model.addAttribute("contact", new Contact());
@@ -56,28 +57,21 @@ public class AdministrationController {
         model.addAttribute("relationship", contactRepository.findAll());
         model.addAttribute("phoneNumber", contactRepository.findAll());
         model.addAttribute("email", contactRepository.findAll());
-        return "/admin/contacts/add";
+        return "contacts/add";
     }
 
-    @PostMapping("/admin/contacts/add")
+    @PostMapping("contacts/add")
     public String processAddContactForm(@ModelAttribute @Valid Contact newContact, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Contact");
-            return "/admin/contacts/add";
+            return "/contacts/add";
         }
         contactRepository.save(newContact);
         return "redirect:";
     }
 
-    @RequestMapping("/admin/files")
-    public String contactsFiles(Model model) {
-        model.addAttribute("title", "All Files");
-        model.addAttribute("files", fileRepository.findAll());
-        return "admin/files/index";
-    }
-
-    @GetMapping("/admin/files/upload")
+    @GetMapping("files/upload")
     public String displayUploadFileForm(Model model) {
         model.addAttribute("title", "Upload File");
         model.addAttribute("file", new File());
@@ -85,76 +79,110 @@ public class AdministrationController {
         model.addAttribute("fileName", fileRepository.findAll());
         model.addAttribute("fileType", fileRepository.findAll());
         model.addAttribute("data", fileRepository.findAll());
-        return "/admin/files/upload";
+        return "files/upload";
     }
 
 
-    @PostMapping("/admin/files/upload")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-        File file = dbFileService.storeFile(file);
-
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile").path(file.getId()).toUriString();
-
-        return new UploadFileResponse(file.getFileName(), fileDownloadUri, file.getFileType(), file.getData());
-    }
-
-    @RequestMapping("/admin/medications")
-    public String medicationsIndex (Model model) {
-        model.addAttribute("title", "All Medications");
-        model.addAttribute("medications", medicationsRepository.findAll());
-        return "admin/medications/index";
-    }
-
-    @RequestMapping("/admin/patients")
-    public String patientsIndex (Model model) {
-        model.addAttribute("title", "All Patients");
-        model.addAttribute("patients", patientRepository.findAll());
-        return "admin/patients/index";
-    }
-
-    @GetMapping("admin/patients/add")
-    public String displayAddPatientForm(Model model) {
-        model.addAttribute("title", "Add Patient");
-        model.addAttribute(new Patient());
-        model.addAttribute("contacts", contactRepository.findAll());
-        model.addAttribute("medications", medicationsRepository.findAll());
-        model.addAttribute("providers", providersRepository.findAll());
-        model.addAttribute("files", fileRepository.findAll());
-        return "admin/patients/add";
-    }
-
-    @PostMapping("admin/patients/add")
-    public String processAddPatientForm(@ModelAttribute @Valid Patient newPatient, Errors errors, Model model, @RequestParam List<Integer> contacts, @RequestParam List<Integer> medications, @RequestParam List<Integer> providers, @RequestParam List<String> files) {
+    @PostMapping("files/upload")
+    public String processUploadFileForm(@RequestParam MultipartFile newFile, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Patient");
-
-            return "admin/patients/add";
+            model.addAttribute("title", "Add File");
+            return "files/upload";
         }
-        List<Contact> contactObjs = (List<Contact>) contactRepository.findAllById(contacts);
-        newPatient.setContacts(contactObjs);
-        List<Medication> medicationObjs = (List<Medication>) medicationsRepository.findAllById(medications);
-        newPatient.setMedications(medicationObjs);
-        List<Provider> providerObjs = (List<Provider>) providersRepository.findAllById(providers);
-        newPatient.setProviders(providerObjs);
-        List<File> fileObjs = (List<File>) fileRepository.findAllById(files);
-        newPatient.setFiles(fileObjs);
-
-        patientRepository.save(newPatient);
-
+        fileRepository.save(newFile);
         return "redirect:";
     }
 
-    @RequestMapping("/admin/providers")
-    public String providersIndex (Model model) {
-        model.addAttribute("title", "All Providers");
-        model.addAttribute("providers", providersRepository.findAll());
-        return "admin/providers/index";
+
+    @GetMapping("medications/add")
+    public String displayAddMedicationsForm(Model model) {
+        model.addAttribute("title", "Add Medication");
+        model.addAttribute(new Medication());
+        model.addAttribute("medicationName", medicationsRepository.findAll());
+        model.addAttribute("medicationStrengthConcentration", medicationsRepository.findAll());
+        model.addAttribute("medicationDose", medicationsRepository.findAll());
+        model.addAttribute("medicationFrequency", medicationsRepository.findAll());
+        model.addAttribute("provider", medicationsRepository.findAll());
+        return "medications/add";
     }
 
-    @RequestMapping("/admin/users")
-    public String usersIndex (Model model) {
-        model.addAttribute("title", "All Users");
-        model.addAttribute("contacts", userRepository.findAll());
-        return "admin/users/index";
+    @PostMapping("medications/add")
+    public String processAddMedicationForm(@ModelAttribute @Valid Medication newMedication, Errors errors, Model model, @RequestParam List<Integer> medications) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Medication");
+
+            return "medications/add";
+        }
+
+
+        @GetMapping("patients/add")
+        public String displayAddPatientForm (Model model){
+            model.addAttribute("title", "Add Patient");
+            model.addAttribute(new Patient());
+            model.addAttribute("contacts", contactRepository.findAll());
+            model.addAttribute("medications", medicationsRepository.findAll());
+            model.addAttribute("providers", providersRepository.findAll());
+            model.addAttribute("files", fileRepository.findAll());
+            return "patients/add";
+        }
+
+
+        @PostMapping("patients/add")
+        public String processAddPatientForm (@ModelAttribute @Valid Patient newPatient, Errors errors, Model
+        model, @RequestParam List <Integer> patients){
+            //, @RequestParam List<Integer> medications, @RequestParam List<Integer> providers, @RequestParam List<String> files) {
+            if (errors.hasErrors()) {
+                model.addAttribute("title", "Add Patient");
+
+                return "patients/add";
+            }
+
+        }
+
+        @GetMapping("providers/add")
+        public String displayAddProviderForm (Model model){
+            model.addAttribute("title", "Add Provider");
+            model.addAttribute("provider", new Provider());
+            model.addAttribute("providerRole", providersRepository.findAll());
+            model.addAttribute("providerName", providersRepository.findAll());
+            model.addAttribute("providerPhoneNumber", providersRepository.findAll());
+            model.addAttribute("patients", patientRepository.findAll());
+            model.addAttribute("medications", medicationsRepository.findAll());
+
+            return "providers/add";
+        }
+
+        @PostMapping("providers/add")
+        public String processAddProviderForm (@ModelAttribute @Valid Provider newProvider, Errors errors, Model model){
+
+            if (errors.hasErrors()) {
+                model.addAttribute("title", "Add Provider");
+                return "providers/add";
+            }
+            providersRepository.save(newProvider);
+            return "redirect:";
+        }
+
+
+        @GetMapping("users/add")
+        public String displayAddUserForm (Model model){
+            model.addAttribute("title", "Add User");
+            model.addAttribute(new User());
+            model.addAttribute("username", userRepository.findAll());
+            model.addAttribute("password", userRepository.findAll());
+            return "users/add";
+        }
+
+        @PostMapping("users/add")
+        public String processAddUserForm (@ModelAttribute @Valid User newUser, Errors errors, Model
+        model, @RequestParam List < Integer > users){
+            if (errors.hasErrors()) {
+                model.addAttribute("title", "Add User");
+
+                return "users/add";
+            }
+        }
     }
 }
+
+

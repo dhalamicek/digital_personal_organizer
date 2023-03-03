@@ -1,13 +1,13 @@
 package com.dlniemann.digitalpersonalorganizer.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class File extends AbstractEntity {
+
+    @ManyToOne
+   private Patient patient;
 
     @NotNull
     @GeneratedValue
@@ -24,7 +24,8 @@ public class File extends AbstractEntity {
 
     }
 
-    public File(String fileId, String fileName, String fileType, byte[] data) {
+    public File(Patient patient, String fileId, String fileName, String fileType, byte[] data) {
+        this.patient = patient;
         this.fileId = fileId;
         this.fileName = fileName;
         this.fileType = fileType;
@@ -62,4 +63,6 @@ public class File extends AbstractEntity {
     public void setData(byte[] data) {
         this.data = data;
     }
+
+    public Patient getPatient() {return this.patient;}
 }

@@ -3,47 +3,37 @@ package com.dlniemann.digitalpersonalorganizer.models;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity {
-    @NotNull
+
+    @ManyToMany
+    private List<Patient> patients;
+
+   @NotBlank
+   @Size(min = 5, message = "Username must have at least 5 characters")
     private String username;
-    @NotNull
+
+   @NotBlank
+   @Size(min = 7, message = "Password must have at least 7 characters")
     private String pwHash;
 
-    @NotNull
-    private String email;
 
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
-
-    @NotNull
-    private String phoneNumber;
-
-    @NotNull
-    private String relationship;
-
-    @NotNull
-    private String role;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public User() {
-    }
+
     public User(String username, String password){
-        //String email, String} firstName, String lastName, String phoneNumber, String relationship, String role) {
         super();
-        //this.firstName = firstName;
-        //this.lastName = lastName;
-        //this.relationship = relationship;
-        //this.phoneNumber = phoneNumber;
-        //this.email = email;
         this.username = username;
         this.pwHash = encoder.encode(password);
+
+    }
+    public User() {
     }
 
 
@@ -52,7 +42,27 @@ public class User extends AbstractEntity {
         return username;
     }
 
+    public void setUsername(String username) {this.username = username;}
 
+
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
+
+    public String getPwHash() {
+        return pwHash;
+    }
+
+    public void setPwHash(String pwHash) {
+        this.pwHash = pwHash;
+    }
+
+    public List<Patient> getPatients(){return this.patients;}
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
+    }
+    }
 
    // public String getEmail() {return email;    }
 
@@ -91,7 +101,3 @@ public class User extends AbstractEntity {
 
 
 
-    public boolean isMatchingPassword(String password) {
-        return encoder.matches(password, pwHash);
-    }
-}
