@@ -25,7 +25,7 @@ public class Patient extends AbstractEntity {
 
     @OneToMany
     @JoinColumn(name = "patient_id")
-    private List<DBFile> files = new ArrayList<>();
+    private List<File> files = new ArrayList<>();
 
     @NotBlank
     @Size(min = 2, message = "First Name must contain at least 2 characters")
@@ -41,7 +41,7 @@ public class Patient extends AbstractEntity {
 
     public Patient(){};
 
-    public Patient (String firstName, String lastName, String dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<DBFile> files) {
+    public Patient (String firstName, String lastName, String dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<File> files) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -77,11 +77,11 @@ public class Patient extends AbstractEntity {
         this.providers = providers;
     }
 
-    public List<DBFile> getFiles() {
+    public List<File> getFiles() {
         return files;
     }
 
-    public void setFiles(List<DBFile> files) {
+    public void setFiles(List<File> files) {
         this.files = files;
     }
 

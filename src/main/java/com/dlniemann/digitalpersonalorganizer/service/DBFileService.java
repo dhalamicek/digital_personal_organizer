@@ -3,7 +3,7 @@ package com.dlniemann.digitalpersonalorganizer.service;
 
 import com.dlniemann.digitalpersonalorganizer.exceptions.FileStorageException;
 import com.dlniemann.digitalpersonalorganizer.exceptions.MyFileNotFoundException;
-import com.dlniemann.digitalpersonalorganizer.models.DBFile;
+import com.dlniemann.digitalpersonalorganizer.models.File;
 import com.dlniemann.digitalpersonalorganizer.models.data.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class DBFileService {
     @Autowired
     private FileRepository fileRepository;
 
-    public DBFile storeFile(MultipartFile file) {
+    public File storeFile(MultipartFile file) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
@@ -29,15 +29,15 @@ public class DBFileService {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            DBFile dbFile = new DBFile(fileName, file.getContentType(), file.getBytes());
+            file = new File(file.getId(), fileName, file.getFileType(), file.getData());
 
-            return fileRepository.save(dbFile);
+            return fileRepository.save(file);
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
     }
 
-    public DBFile getFile(String id) {
+    public File getFile(String id) {
         return fileRepository.findById(id).orElseThrow(() -> new MyFileNotFoundException("File not found with id " + id));
     }
 }

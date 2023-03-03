@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container py-2">
+    <div class="row">
+        <div class="col">
+            <h2 class="font-weight-light">Digital Personal Organizer</h2>
+        </div>
+    </div>
+</div>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="@{'/admin/files'}">Admin</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="@{'/upload'}">Upload File</a>
+    </li>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/index">File List</a>
+    </li>
+</ul>
+<br>
+<div class="container py-2">
+    <div class="row">
+        <div class="col">
+            <h4 class="font-weight-light">Upload a New File</h4>
+        </div>
+    </div>
+</div>
+<br>
+<div class="card-body">
+    <div class="card" style="width: 50rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+
+            <form method="post"action="uploadServlet" enctype="multipart/form-data">
+
+                <!--                        fileName field-->
+                <div class="row mb-3">
+                    <label for="fileName" class="col-sm-2 col-form-label">File Name</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" size="50" placeholder="Enter filename" id="fileName" required th:field="${registerFormDTO.username}" />
+                    </div>
+
+                    <!--                        fileType field-->
+                    <fieldset class="row mb-3"></fieldset>
+                     <label th:for="fileType">Choose a File Type</label>
+                    <legend class="col-form-label col-sm-2 pt-0">File Type</legend>-->/>
+                    <div class="col-sm-10">
+                       <div class="form-check">
+                           <input class="form-control" >
+                           <select id="fileType" name="fileType">
+                               <option value="csv">.CSV</option>
+                               <option value="img">.IMG</option>
+                               <option value="jpg">.JPG</option>
+                               <option value="pdf">.PDF</option>
+                               <option value="png">.PNG</option>
+                               <option value="wordDoc">Word Doc</option>
+                               <option value="xls">Excel Spreadsheet</option>
+                           </select>
+                        </div>
+
+                        <!--                        data field-->
+                        <div class="row mb-3">
+                            <label for="fileName" class="col-sm-2 col-form-label">Choose File</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="file" id="data" required size="50"/>
+                            </div>
+
+                            <a th:href="@{'/admin/files/upload'}"><button type="submit" class="btn btn-primary">Create User</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

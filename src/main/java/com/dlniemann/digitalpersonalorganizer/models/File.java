@@ -1,17 +1,18 @@
 package com.dlniemann.digitalpersonalorganizer.models;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "files")
-public class DBFile {
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+public class File extends AbstractEntity {
 
+    @NotNull
+    @GeneratedValue
+    @Id
+    private String fileId;
     private String fileName;
 
     private String fileType;
@@ -19,24 +20,23 @@ public class DBFile {
     @Lob
     private byte[] data;
 
-    public DBFile() {
+    public File() {
 
     }
 
-    public DBFile(String fileName, String fileType, byte[] data) {
-        super();
+    public File(String fileId, String fileName, String fileType, byte[] data) {
+        this.fileId = fileId;
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
     }
 
-
-    public String getId() {
-        return id;
+    public String getFileId() {
+        return fileId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
     }
 
     public String getFileName() {

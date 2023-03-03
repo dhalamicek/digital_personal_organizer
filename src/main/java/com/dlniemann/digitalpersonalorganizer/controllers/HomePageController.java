@@ -1,15 +1,14 @@
 package com.dlniemann.digitalpersonalorganizer.controllers;
 
-import com.dlniemann.digitalpersonalorganizer.models.*;
+import com.dlniemann.digitalpersonalorganizer.models.Patient;
 import com.dlniemann.digitalpersonalorganizer.models.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -44,39 +43,9 @@ public class HomePageController {
         return "index";
     }
 
-    @GetMapping("add")
-    public String displayAddPatientForm(Model model) {
-        model.addAttribute("title", "Add Patient");
-        model.addAttribute(new Patient());
-        model.addAttribute("contacts", contactRepository.findAll());
-        model.addAttribute("medications", medicationsRepository.findAll());
-        model.addAttribute("providers", providersRepository.findAll());
-        model.addAttribute("files", fileRepository.findAll());
-        return "add";
-    }
 
-        @PostMapping("add")
-        public String processAddPatientForm(@ModelAttribute @Valid Patient newPatient, Errors errors, Model model, @RequestParam List<Integer> contacts, @RequestParam List<Integer> medications, @RequestParam List<Integer> providers, @RequestParam List<String> files) {
-            if (errors.hasErrors()) {
-                model.addAttribute("title", "Add Patient");
 
-                return "patients/add";
-            }
-            List<Contact> contactObjs = (List<Contact>) contactRepository.findAllById(contacts);
-            newPatient.setContacts(contactObjs);
-            List<Medication> medicationObjs = (List<Medication>) medicationsRepository.findAllById(medications);
-            newPatient.setMedications(medicationObjs);
-            List<Provider> providerObjs = (List<Provider>) providersRepository.findAllById(providers);
-            newPatient.setProviders(providerObjs);
-            List<DBFile> fileObjs = (List<DBFile>) fileRepository.findAllById(files);
-            newPatient.setFiles(fileObjs);
-
-            patientRepository.save(newPatient);
-
-            return "redirect:";
-        }
-
-    @GetMapping("view/{jobId}")
+    @GetMapping("view/{patientId}")
     public String displayViewPatient(Model model, @PathVariable int patientId) {
 
 

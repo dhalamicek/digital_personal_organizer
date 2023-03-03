@@ -2,19 +2,30 @@ package com.dlniemann.digitalpersonalorganizer.payload;
 
 public class UploadFileResponse {
 
-        private String fileName;
+    private String fileId;
+
+    private String fileName;
         private String fileDownloadUri;
         private String fileType;
         private long size;
 
-        public UploadFileResponse(String fileName, String fileDownloadUri, String fileType, long size) {
+        public UploadFileResponse(String fileId, String fileName, String fileDownloadUri, String fileType, long size) {
+            this.fileId = fileId;
             this.fileName = fileName;
             this.fileDownloadUri = fileDownloadUri;
             this.fileType = fileType;
             this.size = size;
         }
 
-        public String getFileName() {
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
+
+    public String getFileName() {
             return fileName;
         }
 
