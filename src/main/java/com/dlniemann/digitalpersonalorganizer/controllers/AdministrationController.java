@@ -163,7 +163,14 @@ public class AdministrationController {
             return "redirect:";
         }
 
+//users index needs to be here
 
+        @GetMapping("users")
+        public String displayAllProviders(Model model) {
+            model.addAttribute("title", "All Users");
+            model.addAttribute("users", userRepository.findAll());
+            return "users/index";
+        }
         @GetMapping("users/add")
         public String displayAddUserForm (Model model){
             model.addAttribute("title", "Add User");
