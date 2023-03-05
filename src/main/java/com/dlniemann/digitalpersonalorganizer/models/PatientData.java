@@ -35,10 +35,10 @@ public class PatientData extends AbstractEntity {
 
     public static String getFieldValue(Patient patient, String fieldName) {
         String theValue;
-        if(fieldName.equals("firstName")){
-            theValue = patient.getFirstName();
-        } else if (fieldName.equals("lastName")){
-            theValue = patient.getLastName();
+        if(fieldName.equals("patientFirstName")){
+            theValue = patient.getPatientFirstName();
+        } else if (fieldName.equals("patientLastName")){
+            theValue = patient.getPatientLastName();
         } else if (fieldName.equals("dOB")) {
             theValue = patient.getDOB();
         } else if (fieldName.equals("contacts")) {
@@ -62,9 +62,9 @@ public class PatientData extends AbstractEntity {
 
         for (Patient patient : allPatients) {
 
-            if (patient.getFirstName().toLowerCase().contains(lower_val)) {
+            if (patient.getPatientFirstName().toLowerCase().contains(lower_val)) {
                 results.add(patient);
-            } else if (patient.getLastName().toLowerCase().contains(lower_val)){
+            } else if (patient.getPatientLastName().toLowerCase().contains(lower_val)){
                 results.add(patient);
             } else if (patient.getDOB().toLowerCase().contains(lower_val)) {
                 results.add(patient);

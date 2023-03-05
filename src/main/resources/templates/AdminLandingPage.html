@@ -53,7 +53,7 @@
         <a class="nav-link" href="@{'/users/index'}">User List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create User</a>
+        <a class="nav-link" href="@{'/users/add'}">Create User</a>
     </li>
 </ul>
 
@@ -73,6 +73,7 @@
 
 <div class="row">
     <!--    create new user-->
+    <form>
     <div class="col-sm-5">
         <div class="card">
             <img src="..." class="card-img-top" alt="...">
@@ -80,7 +81,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Create a New User</h5>
                 </div>
-                <form>
+
                     <!--                        username field-->
                     <br>
                     <div class="container py-2">
@@ -115,13 +116,21 @@
                                             </div>
                                         </div>
                                     </div>
+                            </div>
                                     </fieldset>
 
-                                    <a th:href="@{'/user/add'}"><button type="submit" class="btn btn-primary">Create User</button></a>
+                                    <a th:href="@{'/users/add'}"><button type="submit" class="btn btn-primary">Create User</button></a>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
 
-
-
+<div class="row">
     <!--create new contact-->
+    <form method="post" style="max-width:600px;">
     <div class="col-sm-5">
         <div class="card">
             <img src="..." class="card-img-top" alt="...">
@@ -131,12 +140,12 @@
                     <h5 class="card-title">Create a New Contact</h5>
                 </div>
 
-                <form method="post" style="max-width:600px;">
+
                     <!--                        first name field-->
                     <div class="row mb-3">
                         <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="First Name" id="inputFirstName" th:field=${contact.firstName}" />
+                            <input class="form-control" placeholder="First Name" id="firstName" th:field="${contact.firstName}" />
                             <span th:errors="${contact.firstName}" class="error"></span>
                         </div>
                     </div>
@@ -144,7 +153,7 @@
                     <div class="row mb-3">
                         <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="Last Name" id="inputLastName" th:field="${contact.lastName}" />
+                            <input class="form-control" placeholder="Last Name" id="lastName" th:field="${contact.lastName}" />
                             <span th:errors="${contact.lastName}" class="error"></span>
                         </div>
                     </div>
@@ -152,7 +161,7 @@
                     <div class="row mb-3">
                         <label for="phoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="Phone Number" id="inputPhoneNumber" th:field="${contact.phoneNumber}" />
+                            <input class="form-control" placeholder="Phone Number" id="phoneNumber" th:field="${contact.phoneNumber}" />
                             <span th:errors="${contact.phoneNumber}" class="error"></span>
                         </div>
                     </div>
@@ -160,7 +169,7 @@
                     <div class="row mb-3">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="Email" id="inputEmail" th:field="${contact.email}" />
+                            <input class="form-control" placeholder="Email" id="email" th:field="${contact.email}" />
                             <span th:errors="${contact.email}" class="error"></span>
                         </div>
                     </div>
@@ -168,7 +177,7 @@
                     <div class="row mb-3">
                         <label for="relationship" class="col-sm-2 col-form-label">Relationship to Patient</label>
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="Relationship" id="inputRelationship" th:field="${contact.relationship}" />
+                            <input class="form-control" placeholder="Relationship" id="relationship" th:field="${contact.relationship}" />
                             <span th:errors="${contact.relationship}" class="error"></span>
                         </div>
                     </div>
@@ -176,7 +185,7 @@
                     <div class="row mb-3">
                         <label for="emergency" class="col-sm-2 col-form-label">Emergency Contact</label>
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="Emergency" id="inputEmergency" th:field="${contact.emergency}" />
+                            <input class="form-control" placeholder="Emergency" id="emergency" th:field="${contact.emergency}" />
                             <input type="radio" id="yes" name="emergency_contact" value="YES">
                             <label for="yes">YES</label><br>
                             <label th:text="${contact.emergency}"></label>
@@ -185,15 +194,18 @@
                             <label th:text="${contact.emergency}"></label>
 
                             </th:block>
-                            <a th:href="@{'/contacts/add'}">Add Contact</a>
-                        </div>
+                                                    </div>
                         <div class="col-auto">
-                            <button type="submit" input type="submit" class="btn btn-primary mb-3">Add Contact</button>
+                            <a th:href="@{'/contacts/add'}"><button type="submit" class="btn btn-primary mb-3">Add Contact</button></a>
                         </div>
                     </div>
-                </form>
+
                         </div>
                     </div>
+    </div>
+    </form>
+</div>
+    <div class="row">
                     <!--                    upload file-->
 
         <form method="post" action="uploadServlet" enctype="multipart/form-data">
@@ -214,6 +226,7 @@
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" size="50" placeholder="Enter filename" id="fileName" required th:field="${registerFormDTO.username}" />
                             </div>
+                        </div>
 
                             <!--                        fileType field-->
                             <fieldset class="row mb-3"></fieldset>
@@ -232,29 +245,192 @@
                                         <option value="xls">Excel Spreadsheet</option>
                                     </select>
                                 </div>
-
+                            </div>
                                 <!--                        data field-->
                                 <div class="row mb-3">
                                     <label for="fileName" class="col-sm-2 col-form-label">Choose File</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" id="data" required size="50"/>
                                     </div>
+                                </div>
+
                     <!--                    submit button-->
                     <div class="col-auto">
                         <a th:href="@{'/admin/files/upload'}"><button type="submit" class="btn btn-primary mb-3">Upload New File</button></a>
                     </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-                </form>
-            </div>
-        </div>
-
+        </form>
     </div>
 
+<div class="row">
+    <!--create new medication-->
+    <form method="post" style="max-width:600px;">
+        <div class="col-sm-5">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Create a New Medication</h5>
+                    </div>
+
+
+                                        <!--                        medication name field-->
+                                        <div class="row mb-3">
+                                            <label for="medicationName" class="col-sm-2 col-form-label">Medication Name</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" placeholder="medicationName" id="medicationName" th:field="${medication.medicationName}" />
+                                                <span th:errors="${medication.medicationName}" class="error"></span>
+                                            </div>
+                                        </div>
+                                        <!--                        medication strength/concentration field-->
+                                        <div class="row mb-3">
+                                            <label for="medicationStrengthConcentration" class="col-sm-2 col-form-label">Medication Strength/Concentration</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" placeholder="medicationStrengthConcentration" id="medicationStrengthConcentration" th:field="${medication.medicationStrengthConcentration}" />
+                                                <span th:errors="${medication.medicationStrengthConcentration}" class="error"></span>
+                                            </div>
+                                        </div>
+                                        <!--                        medication dose field-->
+                                        <div class="row mb-3">
+                                            <label for="medicationDose" class="col-sm-2 col-form-label">Medication Dose</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" placeholder="medicationDose" id="medicationDose" th:field="${medication.medicationDose}" />
+                                                <span th:errors="${medication.medicationDose}" class="error"></span>
+                                            </div>
+                                        </div>
+                                        <!--                        medication frequency field-->
+                                        <div class="row mb-3">
+                                            <label for="medicationName" class="col-sm-2 col-form-label">Medication Frequency</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" placeholder="medicationFrequency" id="medicationFrequency" th:field="${medication.medicationFrequency}" />
+                                                <span th:errors="${medication.medicationFrequency}" class="error"></span>
+                                            </div>
+                                        </div>
+                                        <!--                        provider field-->
+                                        <div class="row mb-3">
+                                            <label for="providers" class="col-sm-2 col-form-label">Provider</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" placeholder="providers" id="providers" th:field="${medication.providers}" />
+                                                <span th:errors="${medication.providers}" class="error"></span>
+                                            </div>
+                                        </div>
+                                        <!--                    submit button-->
+                                        </th:block>
+                                <div class="col-auto">
+                                    <a th:href="@{'/medications/add'}"><button type="submit" class="btn btn-primary mb-3">Add Medication</button></a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                </form>
 </div>
+
+
+<div class="row">
+    <!--create new provider-->
+    <form method="post" style="max-width:600px;">
+        <div class="col-sm-5">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Create a New Provider</h5>
+                    </div>
+
+
+                    <!--                       provider name field-->
+                    <div class="row mb-3">
+                        <label for="providerName" class="col-sm-2 col-form-label">Provider Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="providerName" id="providerName" th:field="${provider.providerName}" />
+                            <span th:errors="${provider.providerName}" class="error"></span>
+                        </div>
+                    </div>
+                    <!--                        provider role (ie doctor, pharmacy, etc or specialty - gastroenterologist) field-->
+                    <div class="row mb-3">
+                        <label for="providerRole" class="col-sm-2 col-form-label">Provider Role</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="providerRole" id="providerRole" th:field="${provider.providerRole}" />
+                            <span th:errors="${provider.providerRole}" class="error"></span>
+                        </div>
+                    </div>
+                    <!--                        provider phone number field-->
+                    <div class="row mb-3">
+                        <label for="providerPhoneNumber" class="col-sm-2 col-form-label">Provider Phone Number</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="providerPhoneNumber" id="providerPhoneNumber" th:field="${provider.providerPhoneNumber}" />
+                            <span th:errors="${provider.providerPhoneNumber}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <!--                    submit button-->
+                    </th:block>
+                    <div class="col-auto">
+                        <a th:href="@{'/providers/add'}"><button type="submit" class="btn btn-primary mb-3">Add Provider</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <!--create new patient-->
+    <form method="post" style="max-width:600px;">
+        <div class="col-sm-5">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Create a New Patient</h5>
+                    </div>
+
+
+                    <!--                        first name field-->
+                    <div class="row mb-3">
+                        <label for="patientFirstName" class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="First Name" id="patientFirstName" th:field="${patient.patientFirstName}" />
+                            <span th:errors="${patient.patientFirstName}" class="error"></span>
+                        </div>
+                    </div>
+                    <!--                        last name field-->
+                    <div class="row mb-3">
+                        <label for="patientLastName" class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="Last Name" id="patientLastName" th:field="${patient.patientLastName}" />
+                            <span th:errors="${patient.patientLastName}" class="error"></span>
+                        </div>
+                    </div>
+                    <!--                        date of birth field-->
+                    <div class="row mb-3">
+                        <label for="dOB" class="col-sm-2 col-form-label">Date Of Birth</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="Date Of Birth" id="dOB" th:field="${patient.dOB}" />
+                            <span th:errors="${patient.dOB}" class="error"></span>
+                        </div>
+                    </div>
+                    <!-- how would I add fields so a patient is connected to specific contacts/meds/providers/users? Do I put a patient field on those forms?-->
+
+
+                            </th:block>
+                        <div class="col-auto">
+                            <a th:href="@{'/contacts/add'}"><button type="submit" class="btn btn-primary mb-3">Add Patient</button></a>
+                        </div>
+                </div>
+
+                </div>
+            </div>
+    </form>
+</div>
+
+
+        </div>
+
 </body>
 </html>
