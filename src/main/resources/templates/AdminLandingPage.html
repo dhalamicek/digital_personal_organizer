@@ -16,44 +16,44 @@
 
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Admin</a>
+        <a class="nav-link active" aria-current="page" href="@{'/admin'}">Admin</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'/contacts/index'}">Contact List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create Contact</a>
+        <a class="nav-link" href="@{'admin/contacts/add'">Create Contact</a>
     </li>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'/files/index'}">File List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Upload File</a>
+        <a class="nav-link" href="@{'admin/files/upload'}">Upload File</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'/medications/index'}">Medication List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create Medication</a>
+        <a class="nav-link" href="@{'admin/medications/add'}">Create Medication</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'/index'}">Patient List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create Patient</a>
+        <a class="nav-link" href="@{'admin/patients/add'}">Create Patient</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'/providers/index'}">Provider List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create Provider</a>
+        <a class="nav-link" href="@{'admin/providers/add'}">Create Provider</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'/users/index'}">User List</a>
+        <a class="nav-link" href="@{'admin/users/index'}">User List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'/users/add'}">Create User</a>
+        <a class="nav-link" href="@{'admin/users/add'}">Create User</a>
     </li>
 </ul>
 
@@ -72,7 +72,7 @@
 
 
 <div class="row">
-    <!--    create new user-->
+                                     <!--    create new user-->
     <form>
     <div class="col-sm-5">
         <div class="card">
@@ -129,7 +129,8 @@
 </div>
 
 <div class="row">
-    <!--create new contact-->
+
+                                    <!--create new contact-->
     <form method="post" style="max-width:600px;">
     <div class="col-sm-5">
         <div class="card">
@@ -205,6 +206,8 @@
     </div>
     </form>
 </div>
+
+
     <div class="row">
                     <!--                    upload file-->
 
@@ -265,7 +268,7 @@
     </div>
 
 <div class="row">
-    <!--create new medication-->
+                             <!--create new medication-->
     <form method="post" style="max-width:600px;">
         <div class="col-sm-5">
             <div class="card">
@@ -330,7 +333,7 @@
 
 
 <div class="row">
-    <!--create new provider-->
+                        <!--create new provider-->
     <form method="post" style="max-width:600px;">
         <div class="col-sm-5">
             <div class="card">
@@ -379,7 +382,7 @@
 </div>
 
 <div class="row">
-    <!--create new patient-->
+                            <!--create new patient-->
     <form method="post" style="max-width:600px;">
         <div class="col-sm-5">
             <div class="card">
