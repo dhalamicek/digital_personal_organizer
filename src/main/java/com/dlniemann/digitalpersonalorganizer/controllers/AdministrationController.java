@@ -175,6 +175,11 @@ public class AdministrationController {
         public String displayAddUserForm (Model model){
             model.addAttribute("title", "Add User");
             model.addAttribute(new User());
+            model.addAttribute("firstName", userRepository.findAll());
+            model.addAttribute("lastName", userRepository.findAll());
+            model.addAttribute("relationship", userRepository.findAll());
+            model.addAttribute("phoneNumber", userRepository.findAll());
+            model.addAttribute("email", userRepository.findAll());
             model.addAttribute("username", userRepository.findAll());
             model.addAttribute("password", userRepository.findAll());
             return "users/add";

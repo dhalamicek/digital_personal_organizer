@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http:/>/www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container  body-content">
+<h1 th:text="${'User: ' + user.username}">Default Title</h1>
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="user-listing">
+    <p th:text="${'First Name: ' + user.firstName}"></p>
+    <p th:text="${'Last Name: ' + user.lastName}"></p>
+    <p th:text="${'Email: ' + user.email}"></p>
+    <p th:text="${'Phone: ' + user.phoneNumber}"></p>
+    <p th:text="${'Relationship: ' + user.relationship}"></p>
+    <p th:text="${'Role: ' + user.role}"></p>
+
+</div>
 
 </body>
 </html>
