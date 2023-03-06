@@ -116,7 +116,7 @@ public class AdministrationController {
 
 
         @GetMapping("patients/add")
-        public String displayAddPatientForm (Model model){
+        public String displayAddPatientForm(Model model){
             model.addAttribute("title", "Add Patient");
             model.addAttribute(new Patient());
             model.addAttribute("contacts", contactRepository.findAll());
@@ -128,7 +128,7 @@ public class AdministrationController {
 
 
         @PostMapping("patients/add")
-        public String processAddPatientForm (@ModelAttribute @Valid Patient newPatient, Errors errors, Model
+        public String processAddPatientForm(@ModelAttribute @Valid Patient newPatient, Errors errors, Model
         model, @RequestParam List <Integer> patients){
             //, @RequestParam List<Integer> medications, @RequestParam List<Integer> providers, @RequestParam List<String> files) {
             if (errors.hasErrors()) {
@@ -140,7 +140,7 @@ public class AdministrationController {
         }
 
         @GetMapping("providers/add")
-        public String displayAddProviderForm (Model model){
+        public String displayAddProviderForm(Model model){
             model.addAttribute("title", "Add Provider");
             model.addAttribute("provider", new Provider());
             model.addAttribute("providerRole", providersRepository.findAll());
@@ -163,7 +163,7 @@ public class AdministrationController {
             return "redirect:";
         }
 
-//users index needs to be here
+//users index needs to be here?
 
         @GetMapping("users")
         public String displayAllProviders(Model model) {

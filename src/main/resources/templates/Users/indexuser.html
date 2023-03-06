@@ -16,25 +16,25 @@
 </div>
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Admin</a>
+        <a class="nav-link active" aria-current="page" href="@${'/admin'}">Admin</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create Patient</a>
+        <a class="nav-link" href="@${'/admin/patients'}">Create Patient</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create Contact</a>
+        <a class="nav-link" href="@${'/admin/contacts'}">Create Contact</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create Medication</a>
+        <a class="nav-link" href="@${'/admin/medications'}">Create Medication</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">Create User</a>
+        <a class="nav-link" href="@${'/admin/users'}">Create User</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">UploadFile</a>
+        <a class="nav-link" href="@${'/admin/files'}">UploadFile</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">User List</a>
+        <a class="nav-link" href="@${'/admin/users/index'}">User List</a>
     </li>
 </ul>
 <br>
@@ -52,34 +52,10 @@
         <li class="list-group-item">
 
             <div class="user-listing">
-                <p th:text="${'First Name: ' + user.first_name}"></p>
-                first name
-                <p th:text="${'Last Name: ' + user.last_name}"></p>
-                last name
-                <p th:text="${'Email: ' + user.email}"></p>
-                email
-                <p th:text="${'Phone: ' + user.phone}"></p>
-                .
-                <p th:text="${'Relationship: ' + user.relationship}"></p>
-                .
-                <p th:text="${'Role: ' + user.role}"></p>
-            </div>
 
-        </li>
-        <li class="list-group-item">
 
-            <div class="user-listing">
-                <p th:text="${'First Name: ' + user.first_name}"></p>
-                first name
-                <p th:text="${'Last Name: ' + user.last_name}"></p>
-                last name
-                <p th:text="${'Email: ' + user.email}"></p>
-                email
-                <p th:text="${'Phone: ' + user.phone}"></p>
-                .
-                <p th:text="${'Relationship: ' + user.relationship}"></p>
-                .
-                <p th:text="${'Role: ' + user.role}"></p>
+                <p th:text="${'Username: ' + user.username}"></p>
+                username
             </div>
 
         </li>

@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 
+
+<div class="container py-2">
+    <div class="row">
+        <div class="col">
+            <h2 class="font-weight-light">Digital Personal Organizer</h2>
+        </div>
+    </div>
+</div>
+<ul class="nav">
+
+    <li class="nav-item">
+        <a class="nav-link" href="@${'/contacts/index'}">Patient Contacts List</a>
+    </li>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="@${'/files'}">Patient Files List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="@${'/medications'}">Patient Medications List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="@${'/providers'}">Patient Providers List</a>
+    </li>
+</ul>
+
+<br>
+<div class="container py-2">
+    <div class="row">
+        <div class="col">
+            <h4 class="font-weight-light">Patient Contacts List</h4>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+
+            <div class="contact-listing">
+                <p th:text="${'First Name: ' + contact.firstName}"></p>
+                first name
+                <p th:text="${'Last Name: ' + contact.lastName}"></p>
+                last name
+                <p th:text="${'Email: ' + contact.email}"></p>
+                email
+                <p th:text="${'Phone: ' + contact.phoneNumber}"></p>
+                phone number
+                <p th:text="${'Relationship: ' + contact.relationship}"></p>
+                relationship
+
+            </div>
+
+        </li>
+
+    </ul>
+</div>
+
+</div>
+
+
+
 </body>
+
 </html>
