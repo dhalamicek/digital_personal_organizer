@@ -13,24 +13,24 @@ import java.util.List;
 public class Patient extends AbstractEntity {
 
     @ManyToMany
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patientId")
     private List<User> users = new ArrayList<>();
 
     @ManyToMany
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patientId")
     private List<Contact> contacts = new ArrayList<>();
 
     @ManyToMany
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patientId")
     private List<Medication> medications = new ArrayList<>();
 
     @ManyToMany
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patientId")
     private List<Provider> providers = new ArrayList<>();
 
     @OneToMany
-    @JoinColumn(name = "patient_id")
-    private final List<File> files = new ArrayList<>();
+    @JoinColumn(name = "patientId")
+    private List<File> files = new ArrayList<>();
 
     @NotBlank
     @Size(min = 2, message = "First Name must contain at least 2 characters")
@@ -44,7 +44,7 @@ public class Patient extends AbstractEntity {
     @Size(min = 8, message = "Date of Birth must contain at least 8 numbers in MMDDYYYY format")
     private String dOB;
 
-    public Patient(String patientFirstName, String patientLastName, String dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<User> users){
+    public Patient(String patientFirstName, String patientLastName, String dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<User> users, List<File> files){
         super();
         this.patientFirstName = patientFirstName;
         this.patientLastName = patientLastName;
@@ -53,6 +53,7 @@ public class Patient extends AbstractEntity {
         this.medications = medications;
         this.providers = providers;
         this.users = users;
+        this.files = files;
     }
 
     public Patient(){}

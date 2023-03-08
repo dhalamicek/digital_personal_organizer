@@ -16,12 +16,12 @@
 </div>
 <ul class="nav">
      <li class="nav-item">
-        <a class="nav-link" href="@{'/downloadFile/{fileId}'}" text="${'File: ' + file.fileName}">Default Title</a>
+        <a class="nav-link" href="@{'file/downloadServlet/{fileId}'}" text="${'File: ' + files.fileName}">Default Title</a>
     </li>
     <div class="file-listing">
-        <p th:text="${'Name: ' + file.fileName}"></p>
-        <p th:text="${'Description: ' + file.fileDescription}"></p>
-        <p th:text="${'File: ' + file.data}"></p>
+        <p th:text="${'Name: ' + files.fileName}"></p>
+        <p th:text="${'Description: ' + files.fileDescription}"></p>
+        <p th:text="${'File: ' + files.file}"></p>
     </div>
 </ul>
 <br>

@@ -18,7 +18,7 @@ import java.util.Optional;
 //medical, legal, financial, etc and pull lists from there or get rid of provider repository altogether and add provider type
 //to contacts and pull lists from there?
 @Controller
-@RequestMapping("providers")
+@RequestMapping("view/{patientId}/providers")
 public class ProviderController {
 
     @Autowired
@@ -35,19 +35,19 @@ public class ProviderController {
     public String displayAllProviders(Model model) {
         model.addAttribute("title", "All Providers");
         model.addAttribute("providers", providersRepository.findAll());
-        return "providers/index";
+        return "index";
     }
 
 
 
-    @GetMapping("view/{providerId}")
+    @GetMapping("view/{patientId}/providers/{providerId}")
     public String displayViewProvider(Model model, @PathVariable int providerId) {
 
         Optional optProvider = providersRepository.findById(providerId);
         if (optProvider.isPresent()) {
             Provider provider = (Provider) optProvider.get();
             model.addAttribute("provider", provider);
-            return "providers/view";
+            return "view/{patientId}/providers";
         } else {
             return "redirect:../";
         }

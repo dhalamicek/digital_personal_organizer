@@ -15,7 +15,7 @@ import static com.dlniemann.digitalpersonalorganizer.controllers.ListController.
 
 
 @Controller
-@RequestMapping("search")
+@RequestMapping("view/{patientId}/search")
 public class SearchController {
 
     @Autowired

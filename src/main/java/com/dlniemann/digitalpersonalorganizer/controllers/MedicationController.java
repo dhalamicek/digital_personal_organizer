@@ -16,7 +16,7 @@ import java.util.Optional;
 
 
 @Controller
-@RequestMapping("medications")
+@RequestMapping("/view/{patientId}/medications")
 public class MedicationController {
 
     @Autowired
@@ -32,19 +32,19 @@ public class MedicationController {
     public String index(Model model) {
         model.addAttribute("title", "All Medications");
         model.addAttribute("medications", medicationsRepository.findAll());
-        return "medications/index";
+        return "/index";
     }
 
 
 
-    @GetMapping("view/{medicationId}")
+    @GetMapping("/{medicationId}")
     public String displayViewMedication(Model model, @PathVariable int medicationId) {
 
         Optional optMedication = medicationsRepository.findById(medicationId);
         if (optMedication.isPresent()) {
             Medication medication = (Medication) optMedication.get();
             model.addAttribute("medication", medication);
-            return "medications/view";
+            return "/view/{patientId}/medications";
         } else {
             return "redirect:../";
 

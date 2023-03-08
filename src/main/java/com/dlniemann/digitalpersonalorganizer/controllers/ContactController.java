@@ -42,7 +42,7 @@ public class ContactController {
         if (optContact.isPresent()) {
             Contact contact = (Contact) optContact.get();
             model.addAttribute("contact", contact);
-            return "/{contactId}";
+            return "view/{patientId}/contacts";
         } else {
             return "redirect:../";
 

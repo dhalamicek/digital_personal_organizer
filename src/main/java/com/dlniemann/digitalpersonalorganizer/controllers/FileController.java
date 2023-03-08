@@ -1,6 +1,5 @@
 package com.dlniemann.digitalpersonalorganizer.controllers;
 
-import com.dlniemann.digitalpersonalorganizer.models.File;
 import com.dlniemann.digitalpersonalorganizer.models.data.FileRepository;
 import com.dlniemann.digitalpersonalorganizer.models.data.PatientRepository;
 import org.slf4j.Logger;
@@ -12,10 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @RestController
-@RequestMapping("/files")
+@RequestMapping("view/{patientId}/files")
 public class FileController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
@@ -25,11 +28,8 @@ public class FileController {
 
     @Autowired
     private PatientRepository patientRepository;
-
-
-
-    //how to have an index of file names with links to the document download ?
-
+    private ResultSet result;
+    private PreparedStatement statement;
 
 
     @GetMapping("")
@@ -38,13 +38,15 @@ public class FileController {
         return "files/index";
     }
 
-    @GetMapping("view/{fileId}")
-    public String displayViewEmployer(Model model, @PathVariable String fileId) {
-        Optional optFile = fileRepository.findById(fileId);
-        if (optFile.isPresent()) {
-            File file = (File) optFile.get();
-            model.addAttribute("file", file);
-            return "files/view";
+    @GetMapping("/downloadServlet")
+    public String displayViewFile(Model model, @PathVariable String fileId) throws SQLException {
+
+        result = statement.executeQuery();
+
+        if (result.next()) {
+            Blob blob = result.getBlob("file");
+            InputStream inputStream = blob.getBinaryStream();
+            return "view/{patientId}/files";
         } else {
             return "redirect:../";
         }

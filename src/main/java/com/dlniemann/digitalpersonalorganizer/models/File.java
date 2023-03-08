@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class File extends AbstractEntity {
-
     @ManyToOne
    private Patient patient;
 
@@ -15,21 +14,21 @@ public class File extends AbstractEntity {
     private String fileId;
     private String fileName;
 
-    private String fileType;
+    private String fileDescription;
 
     @Lob
-    private byte[] data;
+    private byte[] file;
 
     public File() {
 
     }
 
-    public File(Patient patient, String fileId, String fileName, String fileType, byte[] data) {
+    public File(Patient patient, String fileId, String fileName, String fileDescription, byte[] file) {
         this.patient = patient;
         this.fileId = fileId;
         this.fileName = fileName;
-        this.fileType = fileType;
-        this.data = data;
+        this.fileDescription = fileDescription;
+        this.file = file;
     }
 
     public String getFileId() {
@@ -48,21 +47,25 @@ public class File extends AbstractEntity {
         this.fileName = fileName;
     }
 
-    public String getFileType() {
-        return fileType;
+    public String getFileDescription() {
+        return fileDescription;
     }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setFileDescription(String fileDescription) {
+        this.fileDescription = fileDescription;
     }
 
-    public byte[] getData() {
-        return data;
+    public byte[] getFile() {
+        return file;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
+    public void setFile(byte[] data) {
+        this.file = file;
     }
 
     public Patient getPatient() {return this.patient;}
+
+
 }
+
+
