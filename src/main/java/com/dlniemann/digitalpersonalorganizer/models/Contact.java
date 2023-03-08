@@ -35,17 +35,17 @@ public class Contact extends AbstractEntity {
     private String email;
 
    //need to figure out how to make Emergency Contact limited to only yes or no
-   //@NotBlank
-    //private Boolean emergencyContact;
+   @NotBlank
+    private Boolean emergencyContact;
 
-    public Contact (String firstName, String lastName, String relationship, Integer phoneNumber, String email){
+    public Contact (String firstName, String lastName, String relationship, Integer phoneNumber, String email, Boolean emergencyContact){
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.relationship = relationship;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        //this.emergencyContact = emergencyContact;
+        this.emergencyContact = emergencyContact;
     }
     public Contact (){}
 
@@ -93,11 +93,11 @@ public class Contact extends AbstractEntity {
         return patients;
     }
 
-    //public String getEmergencyContact() {
-        //return emergencyContact;
-    //}
+    public Boolean getEmergencyContact() {
+        return emergencyContact;
+    }
 
-    //public void setEmergencyContact(String emergencyContact) {
-        //this.emergencyContact = emergencyContact;
-    //}
+    public void setEmergencyContact(Boolean emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
 }

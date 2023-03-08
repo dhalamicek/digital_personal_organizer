@@ -36,7 +36,7 @@ public class AdministrationController {
     @Autowired
     private UserRepository userRepository;
 
-    //how to get this to link to their respective pages?
+
     @GetMapping("")
     public String index(Model model) {
         model.addAttribute("title", "Contacts");
@@ -57,6 +57,7 @@ public class AdministrationController {
         model.addAttribute("relationship", contactRepository.findAll());
         model.addAttribute("phoneNumber", contactRepository.findAll());
         model.addAttribute("email", contactRepository.findAll());
+        model.addAttribute("emergency", contactRepository.findAll());
         return "contacts/add";
     }
 

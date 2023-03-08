@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http:/>/www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container  body-content">
+<h1 th:text="${'Contact: ' + contact.id}">Default Title</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="user-listing">
+    <p th:text="${'First Name: ' + contact.firstName}"></p>
+    <p th:text="${'Last Name: ' + contact.lastName}"></p>
+    <p th:text="${'Email: ' + contact.email}"></p>
+    <p th:text="${'Phone: ' + contact.phoneNumber}"></p>
+    <p> Relationship:
+            <ul>
+    <li th:each="relationship: ${contact.relationships}">
+        <a th:href="@{'/contacts/emergency/view/' + ${relationship.id}}"></a>
+    </li>
+</ul>
+    </p>
+    <p th:text="${'Emergency: ' + contact.emergency}"></p>
+
+
+</div>
 
 </body>
 </html>

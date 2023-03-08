@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 
 
-
+//*should I change providers to add a column for
+//medical, legal, financial, etc and pull lists from there or get rid of provider repository altogether and add provider type
+//to contacts and pull lists from there?
 @Controller
 @RequestMapping("providers")
 public class ProviderController {

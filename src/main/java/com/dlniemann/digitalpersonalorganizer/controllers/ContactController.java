@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
-//does add/edit/delete go in this controller or the admincontroller?
+
+//*should I change providers to add a column for
+//medical, legal, financial, etc and pull lists from there or get rid of provider repository altogether and add provider type
+//to contacts and pull lists from there?
 
 @Controller
-@RequestMapping("contacts")
+@RequestMapping("view/{patientId}/contacts")
 public class ContactController {
 
     @Autowired
@@ -28,18 +31,18 @@ public class ContactController {
     public String index(Model model) {
         model.addAttribute("title", "All Contacts");
         model.addAttribute("contacts", contactRepository.findAll());
-        return "contacts/index";
+        return "/index";
     }
 
 
-    @GetMapping("view/{contactId}")
+    @GetMapping("/{contactId}")
     public String displayViewContact(Model model, @PathVariable int contactId) {
 
         Optional optContact = contactRepository.findById(contactId);
         if (optContact.isPresent()) {
             Contact contact = (Contact) optContact.get();
             model.addAttribute("contact", contact);
-            return "contacts/view";
+            return "/{contactId}";
         } else {
             return "redirect:../";
 

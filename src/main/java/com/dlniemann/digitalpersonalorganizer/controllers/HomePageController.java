@@ -21,29 +21,21 @@ public class HomePageController {
 
     @Autowired
     private PatientRepository patientRepository;
-    @Autowired
-    private ContactRepository contactRepository;
-    @Autowired
-    private MedicationsRepository medicationsRepository;
-    @Autowired
-    private ProvidersRepository providersRepository;
-    @Autowired
-    private FileRepository fileRepository;
 
+
+    //this is the page after user successful login. home page should have function to choose the patient desired from an index of patients the user is
+    // linked to and then when clicked, be redirected to the patient's home page, which has their basic info, emergency contacts, and
+    //links to their other pages (contacts/files/providers/meds) in cards
+    //
+    //
+    //how do I limit the patient list just to the patients this user has access to?
     @RequestMapping("")
     public String index(Model model) {
-        model.addAttribute("title", "Basic Patient Information");
-        model.addAttribute("firstName", patientRepository.findAll());
-        model.addAttribute("lastName", patientRepository.findAll());
-        model.addAttribute("dOB", patientRepository.findAll());
-        model.addAttribute("contacts", patientRepository.findAll());
-        model.addAttribute("medications", patientRepository.findAll());
-        model.addAttribute("providers", patientRepository.findAll());
-        model.addAttribute("files", patientRepository.findAll());
-        return "index";
+
+        model.addAttribute("title", "All Patients");
+        model.addAttribute("patients", patientRepository.findAll());
+       return "index";
     }
-
-
 
     @GetMapping("view/{patientId}")
     public String displayViewPatient(Model model, @PathVariable int patientId) {
