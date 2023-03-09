@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Patient extends AbstractEntity {
+public class Patient extends PersonEntity {
 
     @ManyToMany
     @JoinColumn(name = "patientId")
@@ -32,22 +32,14 @@ public class Patient extends AbstractEntity {
     @JoinColumn(name = "patientId")
     private List<File> files = new ArrayList<>();
 
-    @NotBlank
-    @Size(min = 2, message = "First Name must contain at least 2 characters")
-    private String patientFirstName;
 
-    @NotBlank
-    @Size(min = 2, message = "Last Name must contain at least 2 characters")
-    private String patientLastName;
 
     @NotBlank
     @Size(min = 8, message = "Date of Birth must contain at least 8 numbers in MMDDYYYY format")
     private String dOB;
 
-    public Patient(String patientFirstName, String patientLastName, String dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<User> users, List<File> files){
+    public Patient(String dOB, List<Contact> contacts, List<Medication> medications, List<Provider> providers, List<User> users, List<File> files){
         super();
-        this.patientFirstName = patientFirstName;
-        this.patientLastName = patientLastName;
         this.dOB = dOB;
         this.contacts = contacts;
         this.medications = medications;
@@ -82,22 +74,6 @@ public class Patient extends AbstractEntity {
 
     public List<User> getUsers() {return users;}
 
-
-    public String getPatientFirstName() {
-        return patientFirstName;
-    }
-
-    public void setPatientFirstName(String patientFirstName) {
-        this.patientFirstName = patientFirstName;
-    }
-
-    public String getPatientLastName() {
-        return patientLastName;
-    }
-
-    public void setPatientLastName(String patientLastName) {
-        this.patientLastName = patientLastName;
-    }
 
     public String getDOB() {
         return dOB;

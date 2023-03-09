@@ -17,17 +17,17 @@
 <ul class="nav">
 
     <li class="nav-item">
-        <a class="nav-link" href="@${'/contacts'}">Patient Contacts List</a>
+        <a class="nav-link" href="@${'view/{patientId}/contacts'}">Patient Contact List</a>
     </li>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@${'/files'}">Patient Files List</a>
+        <a class="nav-link" href="@${'view/{patientId}/files'}">Patient Files List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@${'/medications'}">Patient Medications List</a>
+        <a class="nav-link" href="@${'view/{patientId}/medications'}">Patient Medications List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@${'/providers/index'}">Patient Providers List</a>
+        <a class="nav-link" href="@${'view/{patientId}/providers/index'}">Patient Providers List</a>
     </li>
 </ul>
 
@@ -46,12 +46,12 @@
         <li class="list-group-item">
 
             <div class="provider-listing">
-                <p th:text="${'Provider Name: ' + providers.providerName}"></p>
-                provider name
+                <p th:text="${'Provider Name: ' + providers.firstName + ' ' + providers.lastName}"></p>
+                Provider Name
                 <p th:text="${'Provider Role/Specialty: ' + providers.providerRole}"></p>
-                provider role
-                <p th:text="${'Provider Phone Number: ' + providers.providerPhoneNumber}"></p>
-                phone number
+                Provider Role/Specialty
+                <p th:text="${'Provider Phone Number: ' + providers.phoneNumber}"></p>
+                Provider Phone Number
                 </div>
 
         </li>

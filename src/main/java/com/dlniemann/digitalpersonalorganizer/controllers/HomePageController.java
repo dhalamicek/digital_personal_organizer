@@ -15,7 +15,7 @@ import java.util.Optional;
 //insurance card image and headshot image
 
 @Controller
-@RequestMapping("")
+@RequestMapping("home")
 public class HomePageController {
 
     @Autowired

@@ -16,35 +16,35 @@
 
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="@{'/admin'}">Admin</a>
+        <a class="nav-link active" aria-current="page" href="@{'admin'}">Admin</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'/contacts/index'}">Contact List</a>
+        <a class="nav-link" href="@{'admin/contacts/index'}">Contact List</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'admin/contacts/add'">Create Contact</a>
     </li>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'/files/index'}">File List</a>
+        <a class="nav-link" href="@{'admin/{patientId}/files/index'}">File List</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'admin/files/upload'}">Upload File</a>
+        <a class="nav-link" href="@{'admin/{patientId}/files/upload'}">Upload File</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'/medications/index'}">Medication List</a>
+        <a class="nav-link" href="@{'admin/medications/index'}">Medication List</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'admin/medications/add'}">Create Medication</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'/index'}">Patient List</a>
+        <a class="nav-link" href="@{'admin/index'}">Patient List</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'admin/patients/add'}">Create Patient</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@{'/providers/index'}">Provider List</a>
+        <a class="nav-link" href="@{'admin/providers/index'}">Provider List</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@{'admin/providers/add'}">Create Provider</a>
@@ -81,8 +81,59 @@
                 <div class="card-body">
                     <h5 class="card-title">Create a New User</h5>
                 </div>
+                <!--                        userFirstName field-->
+                <br>
+                <div class="container py-2">
+                    <div class="row">
 
-                    <!--                        username field-->
+                        <div class="col">
+                            <input class="form-control" placeholder="Enter first name" id="userFirstName" required th:field="${registerFormDTO.userFirstName}" />
+                            <span th:errors="${registerFormDTO.userFirstName}" class="error"></span>
+                            <h4 class="font-weight-light">First Name: </h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!--                        userLastName field-->
+                <br>
+                <div class="container py-2">
+                    <div class="row">
+
+                        <div class="col">
+                            <input class="form-control" placeholder="Enter last name" id="userLastName" required th:field="${registerFormDTO.userLastName}" />
+                            <span th:errors="${registerFormDTO.userLastName}" class="error"></span>
+                            <h4 class="font-weight-light">Last Name: </h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!--                        userPhoneNumber field-->
+                <br>
+                <div class="container py-2">
+                    <div class="row">
+
+                        <div class="col">
+                            <input class="form-control" placeholder="Enter phone number" id="userPhoneNumber" required th:field="${registerFormDTO.userPhoneNumber}" />
+                            <span th:errors="${registerFormDTO.userPhoneNumber}" class="error"></span>
+                            <h4 class="font-weight-light">Phone Number: </h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!--                        email field-->
+                <br>
+                <div class="container py-2">
+                    <div class="row">
+
+                        <div class="col">
+                            <input class="form-control" placeholder="Enter email" id="userEmail" required th:field="${registerFormDTO.userEmail}" />
+                            <span th:errors="${registerFormDTO.userEmail}" class="error"></span>
+                            <h4 class="font-weight-light">Email: </h4>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                                   <!--                        username field-->
                     <br>
                     <div class="container py-2">
                         <div class="row">
@@ -95,11 +146,6 @@
                         </div>
                     </div>
                     <br>
-
-                    <div class="card-body">
-                        <div class="card" style="width: 50rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
 
                                     <!--                        password field-->
                                     <div class="row mb-3">
@@ -122,7 +168,7 @@
                                     <a th:href="@{'/users/add'}"><button type="submit" class="btn btn-primary">Create User</button></a>
                             </div>
                     </div>
-            </div>
+    </form>
         </div>
     </div>
     </form>
@@ -179,34 +225,15 @@
                         <label th:for="relationship" class="col-sm-2 col-form-label">Relationship to Patient</label>
                         <div class="col-sm-10">
                             <div class="form-group">
+                                <th:block th:each="relationship : ${relationships}">
 
-                                <input class="form-control" th:field="${contact.relationship}" />
-                                <input type="checkbox" id="relationship1" name="relationship1" value="Family">
-                                <label for="relationship1">Family</label><br>
-                                <input type="checkbox" id="relationship2" name="relationship2" value="Friend">
-                                <label for="relationship2">Friend</label><br>
-                                <input type="checkbox" id="relationship3" name="relationship3" value="Caregiver">
-                                <label for="relationship4">Caregiver</label><br>
-                                <input type="checkbox" id="relationship8" name="relationship8" value="Executor of Estate">
-                                <label for="relationship8">Executor of Estate</label><br>
-                                <input type="checkbox" id="relationship9" name="relationship9" value="TTEE">
-                                <label for="relationship9">Trustee</label><br>
-                                <input type="checkbox" id="relationship10" name="relationship10" value="FPOA">
-                                <label for="relationship10">Financial Power of Attorney</label><br>
-                                <input type="checkbox" id="relationship11" name="relationship11" value="DPOA">
-                                <label for="relationship11">Durable Power of Attorney</label><br>
-                                <input type="checkbox" id="relationship12" name="relationship12" value="HCPOA">
-                                <label for="relationship12">Health Care Power of Attorney</label><br>
-                                <input type="checkbox" id="relationship4" name="relationship4" value="Medical Provider">
-                                <label for="relationship4">Medical Provider</label><br>
-                                <input type="checkbox" id="relationship5" name="relationship5" value="Financial Professional">
-                                <label for="relationship5">Financial Professional</label><br>
-                                <input type="checkbox" id="relationship6" name="relationship6" value="Legal Professional">
-                                <label for="relationship6">Legal Professional</label><br>
-                                <input type="checkbox" id="relationship7" name="relationship7" value="Accounting Professional">
-                                <label for="relationship7">Accounting Professional</label><br>
-                                <span th:errors="${contact.relationship}" class="error"></span>
+                                <input class="form-control" type="checkbox" name="relationships" th:field="${contact.relationship}" th:value=${relationship.id}"/>
+                                   <label th:text="${relationship.name}"></label>
+
+                                </th:block>
+                                <a th:href="@{'/relationships/add'}">Add Relationships</a>
                             </div>
+
                     <!--                        emergency contact field-->
                     <div class="row mb-3">
                         <label for="emergency" class="col-sm-2 col-form-label">Emergency Contact</label>
@@ -229,7 +256,10 @@
                         </div>
                     </div>
     </div>
+        </div>
+    </div>
     </form>
+
 </div>
 
 
@@ -284,7 +314,7 @@
 
                     <!--                    submit button-->
                     <div class="col-auto">
-                        <a th:href="@{'/admin/files/upload'}"><button type="submit" class="btn btn-primary mb-3">Upload New File</button></a>
+                        <a th:href="@{'/admin/{patientId}/files/upload'}"><button type="submit" class="btn btn-primary mb-3">Upload New File</button></a>
                     </div>
                     </div>
                 </div>
@@ -337,7 +367,7 @@
                                                 <span th:errors="${medication.medicationFrequency}" class="error"></span>
                                             </div>
                                         </div>
-                                        <!--                        provider field-->
+                                        <!--                        provider field need to make this field include provider first and last name, and ph #-->
                                         <div class="row mb-3">
                                             <label for="providers" class="col-sm-2 col-form-label">Provider</label>
                                             <div class="col-sm-10">

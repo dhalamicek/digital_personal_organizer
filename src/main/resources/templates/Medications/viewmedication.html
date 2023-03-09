@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http:/>/www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container  body-content">
+<h1 th:text="${'Medication: ' + medication.id}">Default Title</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="medication-listing">
+    <p th:text="${'Medication Name: ' + medication.medicationName}"></p>
+    <p th:text="${'Strength/Concentration: ' + medication.medicationStrengthConcentration}"></p>
+    <p th:text="${'Dose: ' + medication.medicationDose}"></p>
+    <p th:text="${'Frequency: ' + medication.medicationFrequency}"></p>
+    <p th:text="${'Prescribing Physician: ' + medication.providers}"></p>
+
+
+</div>
 
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container py-2">
+    <div class="row">
+        <div class="col">
+            <h2 class="font-weight-light">Digital Personal Organizer</h2>
+        </div>
+    </div>
+</div>
+<form method="post" style="max-width:600px;">
+    <div class="col-sm-5">
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+
+                <div class="card-body">
+                    <h5 class="card-title">Relationships</h5>
+                </div>
+<div class="row mb-3">
+    <label th:for="relationship" class="col-sm-2 col-form-label">Relationship Name</label>
+    <div class="col-sm-10">
+<input type="checkbox" id="relationship1" name="relationship1" value="Family">
+<label for="relationship1">Family</label><br>
+<input type="checkbox" id="relationship2" name="relationship2" value="Friend">
+<label for="relationship2">Friend</label><br>
+<input type="checkbox" id="relationship3" name="relationship3" value="Caregiver">
+<label for="relationship4">Caregiver</label><br>
+<input type="checkbox" id="relationship8" name="relationship8" value="Executor of Estate">
+<label for="relationship8">Executor of Estate</label><br>
+<input type="checkbox" id="relationship9" name="relationship9" value="TTEE">
+<label for="relationship9">Trustee</label><br>
+<input type="checkbox" id="relationship10" name="relationship10" value="FPOA">
+<label for="relationship10">Financial Power of Attorney</label><br>
+<input type="checkbox" id="relationship11" name="relationship11" value="DPOA">
+<label for="relationship11">Durable Power of Attorney</label><br>
+<input type="checkbox" id="relationship12" name="relationship12" value="HCPOA">
+<label for="relationship12">Health Care Power of Attorney</label><br>
+<input type="checkbox" id="relationship4" name="relationship4" value="Medical Provider">
+<label for="relationship4">Medical Provider</label><br>
+<input type="checkbox" id="relationship5" name="relationship5" value="Financial Professional">
+<label for="relationship5">Financial Professional</label><br>
+<input type="checkbox" id="relationship6" name="relationship6" value="Legal Professional">
+<label for="relationship6">Legal Professional</label><br>
+<input type="checkbox" id="relationship7" name="relationship7" value="Accounting Professional">
+<label for="relationship7">Accounting Professional</label><br>
+<span th:errors="${contact.relationship}" class="error"></span>

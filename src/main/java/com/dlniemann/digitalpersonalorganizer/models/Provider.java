@@ -9,33 +9,25 @@ import java.util.List;
 
 
 @Entity
-public class Provider extends AbstractEntity{
+public class Provider extends PersonEntity{
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "providers")
     private List<Patient> patients;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "providers")
     private List<Medication> medications;
 
     @NotBlank(message = "Provider Role is required")
     @Size(min = 3, message = "Provider Role must contain at least three characters")
     private String providerRole;
 
-    @NotBlank (message = "Provider Name is required")
-    @Size(min = 3, message = "Provider Name must contain at least three characters")
-    private String providerName;
-
-    @NotBlank (message = "Provider Phone Number is required")
-    @Size(min = 10, max = 11, message = "Provider Phone Number must contain at least 10 numbers and no more than 11 numbers (no letters or symbols)")
-    private Integer providerPhoneNumber;
 
     public Provider() {}
-    public Provider(String providerRole, String providerName, Integer providerPhoneNumber, List<Medication> medications) {
+    public Provider(String providerRole, List<Medication> medications, List<Patient> patients) {
         super();
         this.providerRole = providerRole;
-        this.providerName = providerName;
-        this.providerPhoneNumber = providerPhoneNumber;
         this.medications = medications;
+        this.patients = patients;
     }
 
 
@@ -48,21 +40,6 @@ public class Provider extends AbstractEntity{
         this.providerRole = providerRole;
     }
 
-    public String getProviderName() {
-        return providerName;
-    }
-
-    public void setProviderName(String providerName) {
-        this.providerName = providerName;
-    }
-
-    public Integer getProviderPhoneNumber() {
-        return providerPhoneNumber;
-    }
-
-    public void setProviderPhoneNumber(Integer providerPhoneNumber) {
-        this.providerPhoneNumber = providerPhoneNumber;
-    }
 
     public List<Medication> getMedications() {
         return this.medications;

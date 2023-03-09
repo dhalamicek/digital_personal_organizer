@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 @Entity
-public class PatientData extends AbstractEntity {
+public class PatientData extends PersonEntity {
 
     //returns the results of searching the Patients data by field and search term
 
@@ -35,10 +35,10 @@ public class PatientData extends AbstractEntity {
 
     public static String getFieldValue(Patient patient, String fieldName) {
         String theValue;
-        if(fieldName.equals("patientFirstName")){
-            theValue = patient.getPatientFirstName();
-        } else if (fieldName.equals("patientLastName")){
-            theValue = patient.getPatientLastName();
+        if(fieldName.equals("firstName")){
+            theValue = patient.getFirstName();
+        } else if (fieldName.equals("lastName")){
+            theValue = patient.getLastName();
         } else if (fieldName.equals("dOB")) {
             theValue = patient.getDOB();
         } else if (fieldName.equals("contacts")) {
@@ -53,20 +53,22 @@ public class PatientData extends AbstractEntity {
         return theValue;
     }
 
-    //Search all Patient fields for the given term
 
+    //Search all Patient fields for the given term
+//how do I include to search by phone number since not a string?
     public static ArrayList<Patient> findByValue(String value, Iterable<Patient> allPatients) {
         String lower_val = value.toLowerCase();
 
         ArrayList<Patient> results = new ArrayList<>();
 
         for (Patient patient : allPatients) {
-
-            if (patient.getPatientFirstName().toLowerCase().contains(lower_val)) {
+            if (patient.getFirstName().toLowerCase().contains(lower_val)) {
                 results.add(patient);
-            } else if (patient.getPatientLastName().toLowerCase().contains(lower_val)){
+            } else if (patient.getLastName().toLowerCase().contains(lower_val)) {
                 results.add(patient);
-            } else if (patient.getDOB().toLowerCase().contains(lower_val)) {
+            } else if (patient.getPhoneNumber().toLowerCase().contains(lower_val)) {
+                results.add(patient);
+            } else if (patient.getEmail().toLowerCase().contains(lower_val)) {
                 results.add(patient);
             } else if (patient.getContacts().toString().toLowerCase().contains(lower_val)) {
                 results.add(patient);
@@ -77,7 +79,7 @@ public class PatientData extends AbstractEntity {
             } else if (patient.getFiles().toString().toLowerCase().contains(lower_val)) {
                 results.add(patient);
             }
-            }
+        }
         return results;
     }
 }

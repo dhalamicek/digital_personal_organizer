@@ -16,7 +16,7 @@
 
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="">Home</a>
+        <a class="nav-link active" aria-current="page" href="/view/{patientId}">Home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@${'/view/{patientId}/contacts'}">Contact List</a>
@@ -31,3 +31,27 @@
         <a class="nav-link" href="@${'/view/{patientId}/providers'}">Medical Provider List</a>
     </li>
 </ul>
+<form method="post" style="max-width:600px;">
+    <div class="col-sm-5">
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+
+                <div class="card-body">
+                    <h5 class="card-title" href="@${'view/{patientId}/contacts/emergency'}">Emergency Contacts List</h5>
+                </div>
+                <p th:text="${'ID: ' + contact.id}"></p>
+                <p th:text="${'Name: ' + contact.firstName + ' ' + contact.lastName}"></p>
+                <p th:text="${'Phone: ' + contact.phoneNumber}"></p>
+                <p>
+                    Relationships:
+                <ul th:each="relationship : ${contact.relationships}">
+                    <li>
+                        <a th:href="@{'/relationships/view/' + ${relationship.id}}" th:text="${relationship.name}"></a>
+                    </li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</form>

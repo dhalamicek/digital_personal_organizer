@@ -9,7 +9,7 @@
     <h1>Add Contact</h1>
     <ul>
         <li th:each="contact : ${contacts}">
-            <a th:href="@{'/contacts/view/' + ${contact.id}}" th:text="${contact.name}"></a>
+            <a th:href="@{'view/{patientId}/contacts' + ${contact.contactId}}" th:text="${contact.firstName} + ' ' + ${contact.lastName}"></a>
         </li>
     </ul>
 </div>
@@ -24,35 +24,7 @@
         <input class="form-control" th:field="${contact.lastName}" />
         <span th:errors="${contact.lastName}" class="error"></span>
     </div>
-    <div class="form-group">
-        <label th:for="relationship">Relationship to Patient</label>
-        <input class="form-control" th:field="${contact.relationship}" />
-        <input type="checkbox" id="relationship1" name="relationship1" value="Family">
-        <label for="relationship1">Family</label><br>
-        <input type="checkbox" id="relationship2" name="relationship2" value="Friend">
-        <label for="relationship2">Friend</label><br>
-        <input type="checkbox" id="relationship3" name="relationship3" value="Caregiver">
-        <label for="relationship4">Caregiver</label><br>
-        <input type="checkbox" id="relationship8" name="relationship8" value="Executor of Estate">
-        <label for="relationship8">Executor of Estate</label><br>
-        <input type="checkbox" id="relationship9" name="relationship9" value="TTEE">
-        <label for="relationship9">Trustee</label><br>
-        <input type="checkbox" id="relationship10" name="relationship10" value="FPOA">
-        <label for="relationship10">Financial Power of Attorney</label><br>
-        <input type="checkbox" id="relationship11" name="relationship11" value="DPOA">
-        <label for="relationship11">Durable Power of Attorney</label><br>
-        <input type="checkbox" id="relationship12" name="relationship12" value="HCPOA">
-        <label for="relationship12">Health Care Power of Attorney</label><br>
-        <input type="checkbox" id="relationship4" name="relationship4" value="Medical Provider">
-        <label for="relationship4">Medical Provider</label><br>
-        <input type="checkbox" id="relationship5" name="relationship5" value="Financial Professional">
-        <label for="relationship5">Financial Professional</label><br>
-        <input type="checkbox" id="relationship6" name="relationship6" value="Legal Professional">
-        <label for="relationship6">Legal Professional</label><br>
-        <input type="checkbox" id="relationship7" name="relationship7" value="Accounting Professional">
-        <label for="relationship7">Accounting Professional</label><br>
-        <span th:errors="${contact.relationship}" class="error"></span>
-    </div>
+
     <div class="form-group">
         <label th:for="phoneNumber">Contact Phone Number</label>
         <input class="form-control" th:field="${contact.phoneNumber}" />
@@ -75,7 +47,7 @@
             <label th:text="${contact.emergency}"></label>
 
         </th:block>
-        <a th:href="@{'/contacts/add'}">Add Contact</a>
+        <a th:href="@{'view/{patientId}/contacts/add'}">Add Contact</a>
     </div>
 
     <input type="submit" value="Add Contact" />

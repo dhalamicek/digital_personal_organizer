@@ -13,3 +13,41 @@
         </div>
     </div>
 </div>
+<div class="container py-2">
+    <div class="row">
+        <div class="col">
+            <h4 class="font-weight-light">Patient List</h4>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+
+            <div class="patient-listing">
+                <p th:text="${'Name: ' + patient.firstName + ' ' + patient.lastName}"></p>
+                patient name
+                <p th:text="${'Date of Birth: ' + patient.dOB}"></p>
+                dob
+                <p th:text="${'Email: ' + patient.email}"></p>
+                email
+                <p th:text="${'Phone: ' + patient.phoneNumber}"></p>
+                phone number
+
+
+            </div>
+
+        </li>
+
+    </ul>
+</div>
+
+</div>
+
+
+
+</body>
+
+</html>

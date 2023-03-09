@@ -43,7 +43,15 @@ public class SinglePatientLandingPageController {
         model.addAttribute("title", "Medications");
         model.addAttribute("title", "Providers");
 
-        return "/view/{patientId}index";
+        return "/view/{patientId}/index";
     }
+
+    @RequestMapping(value = "/contacts")
+    public String indexOfEmergencyContacts(Model model) {
+        //find all contacts with this patientId and whose emergency=YES and create list
+        return "/view/{patientId}/contacts/emergency";
+        }
+
+
 
    }

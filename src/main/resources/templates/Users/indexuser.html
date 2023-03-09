@@ -31,7 +31,7 @@
         <a class="nav-link" href="@${'/admin/users'}">Create User</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="@${'/admin/files'}">UploadFile</a>
+        <a class="nav-link" href="@${'/admin/{patientId}/files'}">UploadFile</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="@${'/admin/users/index'}">User List</a>
@@ -53,7 +53,12 @@
 
             <div class="user-listing">
 
-
+                <p th:text="${'Name: ' + user.userFirstName + ' ' + user.userLastName}"></p>
+                Name
+                <p th:text="${'Phone Number: ' + user.userPhoneNumber}"></p>
+                Phone Number
+                <p th:text="${'Email: ' + user.userEmail}"></p>
+                Email
                 <p th:text="${'Username: ' + user.username}"></p>
                 username
             </div>

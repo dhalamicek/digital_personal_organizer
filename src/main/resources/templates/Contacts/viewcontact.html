@@ -6,7 +6,7 @@
 
 <nav th:replace="fragments :: page-header"></nav>
 
-<div class="user-listing">
+<div class="contact-listing" href="@{'view/{patientId}/contacts/{contactId}'}">
     <p th:text="${'First Name: ' + contact.firstName}"></p>
     <p th:text="${'Last Name: ' + contact.lastName}"></p>
     <p th:text="${'Email: ' + contact.email}"></p>
@@ -14,11 +14,12 @@
     <p> Relationship:
             <ul>
     <li th:each="relationship: ${contact.relationships}">
-        <a th:href="@{'/contacts/emergency/view/' + ${relationship.id}}"></a>
+        <a th:href="@{'view/{patientId}/contacts/' + ${relationship.id}}"></a>
     </li>
 </ul>
     </p>
     <p th:text="${'Emergency: ' + contact.emergency}"></p>
+
 
 
 </div>

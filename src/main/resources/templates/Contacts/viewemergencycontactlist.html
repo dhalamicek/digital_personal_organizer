@@ -17,7 +17,7 @@
 <ul class="nav">
 
     <li class="nav-item">
-        <a class="nav-link" href="@${'view/{patientId}/contacts/index'}">Patient Contacts List</a>
+        <a class="nav-link" href="@${'view/{patientId}/contacts'}">Patient Contact List</a>
     </li>
     </li>
     <li class="nav-item">
@@ -35,7 +35,7 @@
 <div class="container py-2">
     <div class="row">
         <div class="col">
-            <h4 class="font-weight-light">Patient Contacts List</h4>
+            <h4 class="font-weight-light">Emergency Contacts List</h4>
         </div>
     </div>
 </div>
@@ -45,19 +45,13 @@
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
 
-            <div class="contact-listing">
-                <p th:text="${'First Name: ' + contact.firstName}"></p>
-                first name
-                <p th:text="${'Last Name: ' + contact.lastName}"></p>
-                last name
-                <p th:text="${'Email: ' + contact.email}"></p>
-                email
-                <p th:text="${'Phone: ' + contact.phoneNumber}"></p>
-                phone number
+            <div class="emergencycontact-listing">
+                <p th:text="${'Name: ' + contact.firstName + ' ' + contact.lastName}"></p>
+                contact name
                 <p th:text="${'Relationship: ' + contact.relationship}"></p>
-                relationship
-                <p th:text="${'Emergency: ' + contact.emergency}"></p>
-                emergency contact
+                contact relationship
+                <p th:text="${'Phone Number: ' + contact.phoneNumber}"></p>
+                contact phone number
 
             </div>
 

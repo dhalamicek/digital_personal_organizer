@@ -21,11 +21,11 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="@{'/upload'}">Upload File</a>
+        <a class="nav-link" href="@{'/admin/{patientId}/files/upload'}">Upload File</a>
     </li>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/index">File List</a>
+        <a class="nav-link" href="@{'view/{patientId}/files/index">File List</a>
     </li>
 </ul>
 <br>
@@ -65,7 +65,7 @@
                                 <input class="form-control" type="file" id="data" required size="50"/>
                             </div>
 
-                            <a th:href="@{'/admin/files/upload'}"><button type="submit" class="btn btn-primary">Upload File</button></a>
+                            <a th:href="@{'/admin/files/upload/uploadServlet'}"><button type="submit" class="btn btn-primary">Upload File</button></a>
                         </div>
                     </div>
                 </div>

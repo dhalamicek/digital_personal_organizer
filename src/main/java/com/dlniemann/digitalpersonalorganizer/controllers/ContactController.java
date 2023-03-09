@@ -3,6 +3,7 @@ package com.dlniemann.digitalpersonalorganizer.controllers;
 import com.dlniemann.digitalpersonalorganizer.models.Contact;
 import com.dlniemann.digitalpersonalorganizer.models.data.ContactRepository;
 import com.dlniemann.digitalpersonalorganizer.models.data.PatientRepository;
+import com.dlniemann.digitalpersonalorganizer.models.data.RelationshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 
 
-//*should I change providers to add a column for
-//medical, legal, financial, etc and pull lists from there or get rid of provider repository altogether and add provider type
-//to contacts and pull lists from there?
+//should lists be in the listcontroller or in the controller of the content?
 
 @Controller
 @RequestMapping("view/{patientId}/contacts")
@@ -26,6 +25,9 @@ public class ContactController {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private RelationshipRepository relationshipRepository;
 
     @GetMapping("")
     public String index(Model model) {
@@ -48,4 +50,6 @@ public class ContactController {
 
         }
     }
+
+
 }

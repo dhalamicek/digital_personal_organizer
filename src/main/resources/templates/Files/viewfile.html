@@ -16,7 +16,7 @@
 </div>
 <ul class="nav">
      <li class="nav-item">
-        <a class="nav-link" href="@{'file/downloadServlet/{fileId}'}" text="${'File: ' + files.fileName}">Default Title</a>
+        <a class="nav-link" href="@{'view/{patientId}/files/downloadServlet/{fileId}'}" text="${'File: ' + files.fileName}">Default Title</a>
     </li>
     <div class="file-listing">
         <p th:text="${'Name: ' + files.fileName}"></p>
