@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,10 +28,10 @@ public class Medication extends AbstractEntity {
     private String medicationFrequency;
 
      @ManyToMany
-     private List<Patient> patients;
+     private List<Patient> patients = new ArrayList<>();
 
-    @ManyToMany
-    private List<Provider> providers;
+    @ManyToMany(mappedBy = "medications")
+    private List<Provider> providers = new ArrayList<>();
 
 
 

@@ -5,17 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
 public class Provider extends PersonEntity{
 
-    @ManyToMany(mappedBy = "providers")
-    private List<Patient> patients;
+    @ManyToMany
+    private List<Patient> patients = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "providers")
-    private List<Medication> medications;
+    @ManyToMany
+    private List<Medication> medications = new ArrayList<>();
 
     @NotBlank(message = "Provider Role is required")
     @Size(min = 3, message = "Provider Role must contain at least three characters")

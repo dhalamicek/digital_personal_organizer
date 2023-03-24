@@ -12,24 +12,20 @@ import java.util.List;
 @Entity
 public class Patient extends PersonEntity {
 
-    @ManyToMany
-    @JoinColumn(name = "patientId")
+    @ManyToMany(mappedBy = "patients")
     private List<User> users = new ArrayList<>();
 
-    @ManyToMany
-    @JoinColumn(name = "patientId")
+    @ManyToMany(mappedBy = "patients")
     private List<Contact> contacts = new ArrayList<>();
 
-    @ManyToMany
-    @JoinColumn(name = "patientId")
+    @ManyToMany(mappedBy = "patients")
     private List<Medication> medications = new ArrayList<>();
 
-    @ManyToMany
-    @JoinColumn(name = "patientId")
+    @ManyToMany(mappedBy = "patients")
     private List<Provider> providers = new ArrayList<>();
 
     @OneToMany
-    @JoinColumn(name = "patientId")
+    @JoinColumn(name = "patient_id")
     private List<File> files = new ArrayList<>();
 
 

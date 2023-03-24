@@ -10,10 +10,10 @@ import java.util.List;
 @Entity
 public class Relationship extends AbstractEntity{
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "relationships")
    private List<Contact> contacts = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "relationships")
     private List<User> users = new ArrayList<>();
 
     @NotBlank

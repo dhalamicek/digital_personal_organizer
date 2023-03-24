@@ -1,6 +1,6 @@
 package com.dlniemann.digitalpersonalorganizer.models;
 
-import org.aspectj.asm.internal.Relationship;
+
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -11,11 +11,11 @@ import java.util.List;
 @Entity
 public class Contact extends PersonEntity {
 
-    @ManyToMany(mappedBy = "contacts")
+    @ManyToMany
     private List<Patient> patients = new ArrayList<>();
 
     @ManyToMany
-    private List<Relationship> relationships;
+    private List<Relationship> relationships = new ArrayList<>();
 
     @NotBlank
     private Boolean emergencyContact;

@@ -6,16 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class User extends PersonEntity {
 
     @ManyToMany
-    private List<Patient> patients;
+    private List<Patient> patients = new ArrayList<>();
 
     @ManyToMany
-    private List<Relationship> relationships;
+    private List<Relationship> relationships = new ArrayList<>();
 
 
 
